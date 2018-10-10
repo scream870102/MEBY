@@ -168,9 +168,9 @@ MonoBehaviour:
       basicAttackRange: 100
       basicAttackSpeed: 100
       basicAttackPoint: 100
-      basicSpeed: 1000
+      basicSpeed: 200
       numMaxJump: 3
-      jumpForce: 50
+      jumpForce: 20
 --- !u!4 &237804627
 Transform:
   m_ObjectHideFlags: 0

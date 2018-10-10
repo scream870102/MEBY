@@ -9,7 +9,10 @@ public struct PlayerProps {
     public float basicAttackSpeed;
     public float basicAttackPoint;
     public float basicSpeed;
+    public float airSpeed;
     public int numMaxJump;
     public float jumpForce;
+    public float groundRadius;
+    public bool isAirControl;
 
 }
