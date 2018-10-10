@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 	protected float airSpeed;
 	protected int numMaxJump;
 	protected float jumpForce;
-	protected float groundRadius = .2f;
+	protected float groundRadius;
 	private bool isAirControl;
 	//
 	//referrence
@@ -34,8 +34,8 @@ public class PlayerMovement : MonoBehaviour {
 	//
 	//
 	//field
-	protected bool isJump = false;
-	protected bool isGround = false;
+	protected bool isJump;
+	protected bool isGround;
 	protected int numNowJump;
 	protected float moveHorizontal;
 
@@ -55,13 +55,11 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Update ( ) {
-		Debug.Log (isGround);
 		if (isAirControl || isGround)
 			moveHorizontal = Input.GetAxisRaw (parent.NumPlayer + "Horizontal") * (isGround?basicSpeed : airSpeed);
 		if (Input.GetButtonDown (parent.NumPlayer + "Jump")) {
 			Jump ( );
 		}
-
 	}
 
 	protected virtual void Jump ( ) {
