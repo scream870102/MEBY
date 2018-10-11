@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 
 using UnityEngine;
-
+//class define how player move
 public class PlayerMovement : MonoBehaviour {
 	//
 	//
 	//drag ref
+	//
+	//define which layer is ground
 	public LayerMask groundLayer;
 	//
 	//
 	//const
+	//
+	//damp for move
 	[SerializeField]
 	private float smoothDamp = .05f;
+	//ref velocity for smooth damp
 	private Vector2 refVelocity = Vector2.zero;
 
 	//
@@ -27,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 	//referrence
 	protected IPlayer parent = null;
 	protected Rigidbody2D rb = null;
+	//transform for foot
 	public Transform detectGround = null;
 	public IPlayer Parent {
 		set { if (parent == null) parent = value; }
@@ -34,11 +40,17 @@ public class PlayerMovement : MonoBehaviour {
 	//
 	//
 	//field
-	protected bool isJump;
-	protected bool isGround;
+	//
+	//bool for jumping state
+	protected bool bJump;
+	//bool for on ground
+	protected bool bGround;
+	//store current jump time
 	protected int numNowJump;
+	//store horizontal velocity
 	protected float moveHorizontal;
-
+	//set all info from props
+	//set detectGround
 	public void Start ( ) {
 		if (parent != null) {
 			basicSpeed = parent.Props.basicSpeed;
@@ -51,34 +63,34 @@ public class PlayerMovement : MonoBehaviour {
 			rb = GetComponent<Rigidbody2D> ( );
 			detectGround = transform.Find ("Foot");
 		}
-
 	}
-
 	void Update ( ) {
-		if (isAirControl || isGround)
-			moveHorizontal = Input.GetAxisRaw (parent.NumPlayer + "Horizontal") * (isGround?basicSpeed : airSpeed);
+		//if player can controll get horizontal move
+		if (isAirControl || bGround)
+			moveHorizontal = Input.GetAxisRaw (parent.NumPlayer + "Horizontal") * (bGround?basicSpeed : airSpeed);
+		//if player hit jump button call jump method
 		if (Input.GetButtonDown (parent.NumPlayer + "Jump")) {
 			Jump ( );
 		}
 	}
-
+	//if can jump set bJump to true bGround false plus numNowJump
 	protected virtual void Jump ( ) {
 		if (numNowJump < numMaxJump) {
-			isJump = true;
-			isGround = false;
+			bJump = true;
+			bGround = false;
 			numNowJump++;
 		}
-
 	}
+	//get horiziontal velocity and move rigidbody call in fixed update
 	protected virtual void Move ( ) {
 		Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
 		rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
 	}
-
+	//if can jump add force to rigidbody  call in fixed update
 	protected virtual void InJump ( ) {
-		if (isJump) {
+		if (bJump) {
 			rb.AddForce (new Vector2 (0f, jumpForce));
-			isJump = false;
+			bJump = false;
 		}
 	}
 
@@ -88,19 +100,18 @@ public class PlayerMovement : MonoBehaviour {
 			Move ( );
 			InJump ( );
 		}
-
 	}
-
+	//keep detect if player is on ground if true set numOnojump to zero bGround = true
 	protected void IsGrounded ( ) {
 		if (detectGround != null) {
 			Collider2D [ ] colliders = Physics2D.OverlapCircleAll (detectGround.position, groundRadius, groundLayer);
 			foreach (Collider2D collider in colliders) {
 				if (collider != gameObject) {
 					numNowJump = 0;
-					isGround = true;
+					bGround = true;
 				}
 				else
-					isGround = false;
+					bGround = false;
 			}
 		}
 	}

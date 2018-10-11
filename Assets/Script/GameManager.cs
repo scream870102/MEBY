@@ -9,9 +9,8 @@ public class GameManager : MonoBehaviour {
 	[HideInInspector]
 	public static GameManager instance = null;
 	protected SceneController sceneController = null;
+	//attribution include all map character and props of all object
 	public Attribution attribution;
-
-	// Use this for initialization
 	void Awake ( ) {
 		if (instance == null)
 			instance = this;
@@ -19,13 +18,8 @@ public class GameManager : MonoBehaviour {
 			Destroy (gameObject);
 		DontDestroyOnLoad (gameObject);
 	}
-
-	void Start ( ) {
+	protected virtual void Start ( ) {
 		sceneController = GetComponent<SceneController> ( );
 	}
-
-	// Update is called once per frame
-	void Update ( ) {
-
-	}
+	protected virtual void Update ( ) { }
 }

@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 
 using UnityEngine;
-
 public class PlayScene : IScene {
+	//playercontroller can spawnplayer
 	protected PlayerController playerController;
+	//playstate store all need info for game
+	//include how many players and hero type
 	protected PlayState playState;
+	//set sceneName to playscene
 	protected void Awake ( ) {
 		sceneName = "PlayScene";
 	}
-	// Use this for initialization
+	//get playercontroller ref
+	//call playercontroller to spawn player
+	//set info for playercontroller
 	protected override void Start ( ) {
 		playerController = GetComponent<PlayerController> ( );
 		playState = SceneController.playState;
 		playerController.SetInfo (playState);
 		playerController.SpawnAllPlayer ( );
-
 	}
-
-	// Update is called once per frame
-	protected override void Update ( ) {
-
-	}
-
+	protected override void Update ( ) { }
 }
