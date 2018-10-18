@@ -12,7 +12,9 @@ public struct PlayerProps {
     //basic health
     public float basicHealth;
     //basic attack range
-    public float basicAttackRange;
+    //public float basicAttackRange;
+    //basic attack interval time 
+    public float basicAttackInterval;
     //basic attack speed
     public float basicAttackSpeed;
     //basic attack point

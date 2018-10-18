@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 		temp = tempObject.GetComponent<IPlayer> ( );
 		if (temp != null)
 			temp.SetNumPlayer (numPlayer);
+		tempObject.name = temp.NumPlayer;
 		return tempObject;
 	}
 }

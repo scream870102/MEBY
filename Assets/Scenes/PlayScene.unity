@@ -166,12 +166,12 @@ MonoBehaviour:
       color: 0
       mass: 5
       basicHealth: 100
-      basicAttackRange: 100
-      basicAttackSpeed: 100
+      basicAttackInterval: 0.5
+      basicAttackSpeed: 0.2
       basicAttackPoint: 100
       basicSpeed: 300
       airSpeed: 150
-      numMaxJump: 100
+      numMaxJump: 2
       jumpForce: 2000
       groundRadius: 0.02
       isAirControl: 1

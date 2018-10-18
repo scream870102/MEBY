@@ -52,8 +52,9 @@ public class SceneController : MonoBehaviour {
 		PlayState temp;
 		temp.gameMode = EGameMode.SURVIVOR;
 		temp.map = EMap.SUNNY_LAND;
-		temp.numOfPlayers = 1;
+		temp.numOfPlayers = 2;
 		temp.heroes = new List<EHero> ( );
+		temp.heroes.Add (EHero.MASANARI);
 		temp.heroes.Add (EHero.MASANARI);
 		return temp;
 	}

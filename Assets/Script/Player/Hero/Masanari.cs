@@ -29,4 +29,5 @@ public class Masanari : IPlayer {
 		rb.mass = Props.mass;
 	}
 	protected override void Update ( ) { }
+
 }

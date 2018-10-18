@@ -16,6 +16,7 @@ public class IPlayer : MonoBehaviour {
 	//ref for player movement
 	//player movement define how character move
 	protected PlayerMovement movement = null;
+	protected PlayerAttack attack = null;
 	//ref for footobject make playermovement can detect ground
 	protected GameObject footObject = null;
 	//property for footobject make it readonly
@@ -38,7 +39,10 @@ public class IPlayer : MonoBehaviour {
 	//find foot object
 	protected virtual void Start ( ) {
 		movement = GetComponent<PlayerMovement> ( );
+		attack = transform.Find ("Hand").GetComponent<PlayerAttack> ( );
+		attack.Parent = this;
 		movement.Parent = this;
+		attack.Start ( );
 		movement.Start ( );
 		footObject = transform.Find ("Foot").gameObject;
 	}
@@ -46,6 +50,10 @@ public class IPlayer : MonoBehaviour {
 	//public method to set player num string 
 	public void SetNumPlayer (int num) {
 		numPlayer = "Player" + num.ToString ( );
+	}
+
+	public virtual void UnderAttack (float damage) {
+		Debug.Log (this.gameObject.name + " get " + damage);
 	}
 
 }

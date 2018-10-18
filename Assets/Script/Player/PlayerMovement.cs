@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour {
 	public Transform detectGround = null;
 	public IPlayer Parent {
 		set { if (parent == null) parent = value; }
+
 	}
 	//
 	//
