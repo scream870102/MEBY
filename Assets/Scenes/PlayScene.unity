@@ -168,7 +168,7 @@ MonoBehaviour:
       basicHealth: 100
       basicAttackInterval: 0.5
       basicAttackSpeed: 0.2
-      basicAttackPoint: 100
+      basicAttackPoint: 21
       basicSpeed: 300
       airSpeed: 150
       numMaxJump: 2

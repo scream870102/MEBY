@@ -16,7 +16,12 @@ public class IPlayer : MonoBehaviour {
 	//ref for player movement
 	//player movement define how character move
 	protected PlayerMovement movement = null;
+	//ref for player attack
+	//player attack define how character attack
 	protected PlayerAttack attack = null;
+	//ref for player health
+	//player health define about health for character
+	protected PlayerHealth health=null;
 	//ref for footobject make playermovement can detect ground
 	protected GameObject footObject = null;
 	//property for footobject make it readonly
@@ -40,10 +45,13 @@ public class IPlayer : MonoBehaviour {
 	protected virtual void Start ( ) {
 		movement = GetComponent<PlayerMovement> ( );
 		attack = transform.Find ("Hand").GetComponent<PlayerAttack> ( );
+		health=GetComponent<PlayerHealth>();
+		health.Parent=this;
 		attack.Parent = this;
 		movement.Parent = this;
 		attack.Start ( );
 		movement.Start ( );
+		health.Start();
 		footObject = transform.Find ("Foot").gameObject;
 	}
 	protected virtual void Update ( ) { }
@@ -54,6 +62,7 @@ public class IPlayer : MonoBehaviour {
 
 	public virtual void UnderAttack (float damage) {
 		Debug.Log (this.gameObject.name + " get " + damage);
+		health.TakeDamage(damage);
 	}
 
 }

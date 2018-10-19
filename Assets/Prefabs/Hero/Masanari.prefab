@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114838798423625764}
   - component: {fileID: 114032968891785012}
   - component: {fileID: 114551583756713762}
+  - component: {fileID: 114691153601814494}
   m_Layer: 0
   m_Name: Masanari
   m_TagString: Player
@@ -153,7 +154,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1994458577820602}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -245,6 +246,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hero: 0
+--- !u!114 &114691153601814494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956559101026952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29f8396f2773e0f4c9027966dae7b7a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114838798423625764
 MonoBehaviour:
   m_ObjectHideFlags: 1
