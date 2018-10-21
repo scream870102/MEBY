@@ -10,4 +10,6 @@ public struct Attribution {
     public List<PlayerProps> allHeroProps;
     //set all skill props
     public List<SkillProps> allSkillProps;
+
+    public List<Color> allColors;
 }

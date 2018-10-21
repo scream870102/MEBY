@@ -13,14 +13,14 @@ TagManager:
   - UI
   - 
   - 
-  - DetectGround
-  - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerRED
+  - PlayerGREEN
+  - PlayerBLUE
+  - PlayerORANGE
+  - GroundRED
+  - GroundGREEN
+  - GroundBLUE
+  - GroundORANGE
   - 
   - 
   - 

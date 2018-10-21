@@ -5,6 +5,8 @@ using UnityEngine;
 //a interface for all player
 //every hero class must inherit from this class
 public class IPlayer : MonoBehaviour {
+	private bool bInit = false;
+	public bool Init { set { if (bInit == false) bInit = true; } }
 	//field to save which hero it is
 	[SerializeField]
 	private EHero hero = EHero.NONE;
@@ -12,6 +14,11 @@ public class IPlayer : MonoBehaviour {
 	protected EHero Hero {
 		get { return hero; }
 		set { if (hero == EHero.NONE) hero = value; }
+	}
+	private EColor color = (EColor) 1000;
+	public EColor Color {
+		get { return color; }
+		set { if ((int) color == 1000) color = value; }
 	}
 	//ref for player movement
 	//player movement define how character move
@@ -21,7 +28,12 @@ public class IPlayer : MonoBehaviour {
 	protected PlayerAttack attack = null;
 	//ref for player health
 	//player health define about health for character
-	protected PlayerHealth health=null;
+	protected PlayerHealth health = null;
+	//ref for player paintball
+	//define how paintball react
+	protected PlayerPaintball paintball = null;
+	//ref for playerUI
+	protected PlayerUI UI = null;
 	//ref for footobject make playermovement can detect ground
 	protected GameObject footObject = null;
 	//property for footobject make it readonly
@@ -42,27 +54,45 @@ public class IPlayer : MonoBehaviour {
 	//to get player movement and set its parent
 	//call movement start method
 	//find foot object
-	protected virtual void Start ( ) {
-		movement = GetComponent<PlayerMovement> ( );
-		attack = transform.Find ("Hand").GetComponent<PlayerAttack> ( );
-		health=GetComponent<PlayerHealth>();
-		health.Parent=this;
-		attack.Parent = this;
-		movement.Parent = this;
-		attack.Start ( );
-		movement.Start ( );
-		health.Start();
-		footObject = transform.Find ("Foot").gameObject;
+	public virtual void Start ( ) {
+		if (bInit) {
+			movement = GetComponent<PlayerMovement> ( );
+			attack = transform.Find ("Hand").GetComponent<PlayerAttack> ( );
+			health = GetComponent<PlayerHealth> ( );
+			paintball = GetComponent<PlayerPaintball> ( );
+			UI = GameObject.Find (numPlayer + "UI").GetComponent<PlayerUI> ( );
+			UI.Parent = this;
+			health.Parent = this;
+			attack.Parent = this;
+			movement.Parent = this;
+			paintball.Parent = this;
+			UI.Start ( );
+			attack.Start ( );
+			movement.Start ( );
+			health.Start ( );
+			paintball.Start ( );
+			footObject = transform.Find ("Foot").gameObject;
+		}
+
 	}
 	protected virtual void Update ( ) { }
+
 	//public method to set player num string 
 	public void SetNumPlayer (int num) {
 		numPlayer = "Player" + num.ToString ( );
 	}
 
+	//public method make other objects call when player get damage
 	public virtual void UnderAttack (float damage) {
-		Debug.Log (this.gameObject.name + " get " + damage);
-		health.TakeDamage(damage);
+		health.TakeDamage (damage);
+	}
+
+	public virtual float GetHealth ( ) {
+		return health.GetHealth ( );
+	}
+
+	public EColor GetNextPaintBallColor ( ) {
+		return paintball.GetPaintballColor ( );
 	}
 
 }

@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114032968891785012}
   - component: {fileID: 114551583756713762}
   - component: {fileID: 114691153601814494}
+  - component: {fileID: 114497910500872368}
   m_Layer: 0
   m_Name: Masanari
   m_TagString: Player
@@ -230,10 +231,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  - serializedVersion: 2
+    m_Bits: 4096
+  - serializedVersion: 2
+    m_Bits: 8192
+  - serializedVersion: 2
+    m_Bits: 16384
+  - serializedVersion: 2
+    m_Bits: 32768
   smoothDamp: 0.05
   detectGround: {fileID: 4372086871355338}
+--- !u!114 &114497910500872368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956559101026952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1483566ae3e9f4b9b3a997b71a4941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!114 &114551583756713762
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 public struct PlayerProps {
     //hero type
     public EHero hero;
-    //what color it is
-    public EColor color;
     //hero weight
     //ref 5.f
     public float mass;

@@ -11,4 +11,6 @@ public struct PlayState {
     public int numOfPlayers;
     //store herotypes for game
     public List<EHero> heroes;
+    //store herocolor
+    public List<EColor>heroesColor;
 }

@@ -21,7 +21,7 @@ public class Masanari : IPlayer {
 	//set hero type
 	//get hero property from Gamemanger instance attribution
 	//get rigidbody and set its mass
-	protected override void Start ( ) {
+	public override void Start ( ) {
 		Hero = EHero.MASANARI;
 		Props = GameManager.instance.attribution.allHeroProps [(int) EHero.MASANARI];
 		base.Start ( );

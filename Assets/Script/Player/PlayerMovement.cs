@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour {
 	//drag ref
 	//
 	//define which layer is ground
-	public LayerMask groundLayer;
+	public List<LayerMask> groundLayer=new List<LayerMask>();
 	//
 	//
 	//const
@@ -105,14 +105,17 @@ public class PlayerMovement : MonoBehaviour {
 	//keep detect if player is on ground if true set numOnojump to zero bGround = true
 	protected void IsGrounded ( ) {
 		if (detectGround != null) {
-			Collider2D [ ] colliders = Physics2D.OverlapCircleAll (detectGround.position, groundRadius, groundLayer);
-			foreach (Collider2D collider in colliders) {
-				if (collider != gameObject) {
-					numNowJump = 0;
-					bGround = true;
+			foreach(LayerMask layer in groundLayer){
+				Collider2D [ ] colliders = Physics2D.OverlapCircleAll (detectGround.position, groundRadius, layer);
+				foreach (Collider2D collider in colliders) {
+					if (collider != gameObject) {
+						numNowJump = 0;
+						bGround = true;
+					}
+					else
+						bGround = false;
 				}
-				else
-					bGround = false;
+
 			}
 		}
 	}
