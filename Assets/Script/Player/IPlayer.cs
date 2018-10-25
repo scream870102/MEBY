@@ -57,7 +57,7 @@ public class IPlayer : MonoBehaviour {
 	public virtual void Start ( ) {
 		if (bInit) {
 			movement = GetComponent<PlayerMovement> ( );
-			attack = transform.Find ("Hand").GetComponent<PlayerAttack> ( );
+			attack = GetComponent<PlayerAttack> ( );
 			health = GetComponent<PlayerHealth> ( );
 			paintball = GetComponent<PlayerPaintball> ( );
 			UI = GameObject.Find (numPlayer + "UI").GetComponent<PlayerUI> ( );

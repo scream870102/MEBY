@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 50171928673076602}
   - component: {fileID: 70934837148790920}
   - component: {fileID: 114838798423625764}
+  - component: {fileID: 114698404274595710}
   - component: {fileID: 114032968891785012}
   - component: {fileID: 114551583756713762}
   - component: {fileID: 114691153601814494}
@@ -59,8 +60,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4698006748435484}
   - component: {fileID: 61909583171388532}
-  - component: {fileID: 50484131507361298}
-  - component: {fileID: 114013258464083168}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -129,26 +128,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!50 &50484131507361298
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1994458577820602}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &61909583171388532
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -207,18 +186,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114013258464083168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1994458577820602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473d1242007392a42b629d03b6753de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitCollider: {fileID: 61909583171388532}
 --- !u!114 &114032968891785012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,6 +243,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f8396f2773e0f4c9027966dae7b7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114698404274595710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956559101026952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473d1242007392a42b629d03b6753de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitCollider: {fileID: 61909583171388532}
 --- !u!114 &114838798423625764
 MonoBehaviour:
   m_ObjectHideFlags: 1

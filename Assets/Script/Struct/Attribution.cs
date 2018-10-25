@@ -12,4 +12,5 @@ public struct Attribution {
     public List<SkillProps> allSkillProps;
 
     public List<Color> allColors;
+    public List<ItemProps> allItemProps;
 }

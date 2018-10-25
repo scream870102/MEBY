@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour {
 	//call when player get damage if cureen health<=0 enter death state
 	public virtual void TakeDamage (float damage) {
 		currentHealth -= damage;
+		Debug.Log(currentHealth);
 		if (currentHealth <= .0f) {
 			OnDeath ( );
 		}

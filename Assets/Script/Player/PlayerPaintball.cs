@@ -29,9 +29,9 @@ public class PlayerPaintball : MonoBehaviour {
 
 	private void ResetPaintball ( ) {
 		EColor preColor = paintballColor;
-		paintballColor = (EColor) Random.Range (0, System.Enum.GetValues (typeof (EColor)).Length);
+		paintballColor = (EColor) Random.Range (0, System.Enum.GetValues (typeof (EColor)).Length-1);
 		while (paintballColor == preColor || paintballColor == playerColor)
-			paintballColor = (EColor) Random.Range (0, System.Enum.GetValues (typeof (EColor)).Length);
+			paintballColor = (EColor) Random.Range (0, System.Enum.GetValues (typeof (EColor)).Length-1);
 	}
 	public EColor GetPaintballColor ( ) {
 		return paintballColor;
