@@ -4,4 +4,5 @@ public struct SkillProps {
     public ESkill skillName;
     //cool donw time
     public float skillCD;
+    public float skillActionTime;
 }

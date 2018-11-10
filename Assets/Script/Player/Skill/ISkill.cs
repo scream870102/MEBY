@@ -5,6 +5,8 @@ using UnityEngine;
 //interface for skill
 //every skill must to inherit from this class
 public class ISkill : MonoBehaviour {
+	//define how long does this skill act
+	protected float actionTime;
 	//A const float to define how long the skill cooldown time
 	protected float coolDown;
 	//define which button is skill button
@@ -22,6 +24,7 @@ public class ISkill : MonoBehaviour {
 		get { return parent; }
 		set { if (parent == null) parent = value; }
 	}
+
 	protected virtual void Start ( ) {
 		timer = .0f;
 		bInCD = false;
@@ -33,6 +36,9 @@ public class ISkill : MonoBehaviour {
 		//if timer > cool down time set isInCD to false
 		if (timer >= coolDown)
 			bInCD = false;
+		if(bActive && !bInCD) {
+			UseSkill();
+        }
 	}
 	//set if this skill can use
 	public virtual void SetActive (bool active) {
@@ -43,4 +49,6 @@ public class ISkill : MonoBehaviour {
 		bInCD = true;
 		timer = 0.0f;
 	}
+
+	protected virtual void UseSkill(){}
 }

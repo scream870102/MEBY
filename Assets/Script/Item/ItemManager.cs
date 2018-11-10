@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour {
+	//ref for  all item
 	public List<IItem> itemList = new List<IItem> ( );
+	//ref for item spawnPos must get from map object
 	public List<Transform> itemSpawnPos=new List<Transform>();
-	
+	//init itemList set manager
 	void Start ( ) {
 		foreach(IItem item in itemList){
 			item.Manager=this;
@@ -14,6 +16,7 @@ public class ItemManager : MonoBehaviour {
 		}
 	}
 
+	//define when to set item to map
 	void Update ( ) {
 		//time to add item to map
 		if(Input.GetButtonDown("Spawn")){

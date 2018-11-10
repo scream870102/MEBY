@@ -14,31 +14,28 @@ public class SkillShun : ISkill {
         base.Start ( );
         //Get skill coolDown time Number from GameManager instance attribution
         coolDown = GameManager.instance.attribution.allSkillProps [(int) ESkill.SHUN].skillCD;
+        bMark=false;
     }
-    protected override void Update ( ) {
-        //include timer accumulation isInCD setting
-        base.Update ( );
-        //if skill is active and cooldown finish
-        if (bActive && !bInCD) {
-            //if mark position not setting
-            if (!bMark) {
-                //Get playnumber string from parent(IPlayer) 
-                if (Input.GetButtonDown (Parent.NumPlayer + buttonString)) {
-                    //set the current position from gameObject
-                    markPos = gameObject.transform.position;
-                    bMark = true;
-                }
-            }
-            //if mark position has already setting
-            else if (bMark) {
-                if (Input.GetButtonDown (Parent.NumPlayer + buttonString)) {
-                    //set position to mark position
-                    gameObject.transform.position = markPos;
-                    bMark = false;
-                    //make skill start to calculate cooldown
-                    ResetCoolDown ( );
-                }
+    protected override void UseSkill(){
+        //if mark position not setting
+        if (!bMark) {
+            //Get playnumber string from parent(IPlayer) 
+            if (Input.GetButtonDown (Parent.NumPlayer + buttonString)) {
+                //set the current position from gameObject
+                markPos = gameObject.transform.position;
+                bMark = true;
             }
         }
+        //if mark position has already setting
+        else if (bMark) {
+            if (Input.GetButtonDown (Parent.NumPlayer + buttonString)) {
+                //set position to mark position
+                gameObject.transform.position = markPos;
+                bMark = false;
+                //make skill start to calculate cooldown
+                ResetCoolDown ( );
+            }
+        }
+
     }
 }

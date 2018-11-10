@@ -5,10 +5,13 @@ using UnityEngine;
 //a interface for all player
 //every hero class must inherit from this class
 public class IPlayer : MonoBehaviour {
+	//ref for footobject make playermovement can detect ground
+	//protected GameObject footObject = null;
+	//property for footobject make it readonly
+	//public GameObject FootObject { get { return footObject; } }
 	private bool bInit = false;
 	public bool Init { set { if (bInit == false) bInit = true; } }
 	//field to save which hero it is
-	[SerializeField]
 	private EHero hero = EHero.NONE;
 	//property for hero
 	protected EHero Hero {
@@ -32,12 +35,11 @@ public class IPlayer : MonoBehaviour {
 	//ref for player paintball
 	//define how paintball react
 	protected PlayerPaintball paintball = null;
+	//ref for player Skill
+	[SerializeField]
+	protected ISkill skill=null;
 	//ref for playerUI
 	protected PlayerUI UI = null;
-	//ref for footobject make playermovement can detect ground
-	protected GameObject footObject = null;
-	//property for footobject make it readonly
-	public GameObject FootObject { get { return footObject; } }
 	//props store all player property from game manager attribution
 	private PlayerProps props;
 	//property for props
@@ -60,7 +62,10 @@ public class IPlayer : MonoBehaviour {
 			attack = GetComponent<PlayerAttack> ( );
 			health = GetComponent<PlayerHealth> ( );
 			paintball = GetComponent<PlayerPaintball> ( );
+			skill = GetComponent<ISkill> ( );
 			UI = GameObject.Find (numPlayer + "UI").GetComponent<PlayerUI> ( );
+			skill.Parent = this;
+			skill.SetActive(true);
 			UI.Parent = this;
 			health.Parent = this;
 			attack.Parent = this;
@@ -71,7 +76,7 @@ public class IPlayer : MonoBehaviour {
 			movement.Start ( );
 			health.Start ( );
 			paintball.Start ( );
-			footObject = transform.Find ("Foot").gameObject;
+			//footObject = transform.Find ("Foot").gameObject;
 		}
 
 	}
@@ -87,12 +92,38 @@ public class IPlayer : MonoBehaviour {
 		health.TakeDamage (damage);
 	}
 
+	//public method for other class to get palyer cureent health
 	public virtual float GetHealth ( ) {
 		return health.GetHealth ( );
 	}
 
+	//public method for other class to get next painball Color
 	public EColor GetNextPaintBallColor ( ) {
 		return paintball.GetPaintballColor ( );
 	}
+
+	//public method for other class to get what direction is player current facing
+	public bool IsPlayerFacingRight ( ) {
+		return movement.IsPlayerFacingRight ( );
+	}
+
+	//Stop Player attack movement paintball and skill action for specific seconds
+	public void StopAction(float second){
+		attack.enabled=false;
+		movement.enabled=false;
+		paintball.enabled=false;
+		skill.enabled=false;
+		StartCoroutine(StopActionCoroutine(second));
+	}
+
+	//Coroutine for stop player action
+	IEnumerator StopActionCoroutine ( float stopSecond) {
+		yield return new WaitForSeconds (stopSecond);
+		attack.enabled=true;
+		movement.enabled=true;
+		paintball.enabled=true;
+		skill.enabled=true;
+	}
+
 
 }

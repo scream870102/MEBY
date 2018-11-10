@@ -55,7 +55,7 @@ public class SceneController : MonoBehaviour {
 		temp.numOfPlayers = 2;
 		temp.heroes = new List<EHero> ( );
 		temp.heroesColor=new List<EColor>();
-		temp.heroes.Add (EHero.MASANARI);
+		temp.heroes.Add (EHero.PIRATE_BEAR);
 		temp.heroesColor.Add(EColor.RED);
 		temp.heroes.Add(EHero.MASANARI);
 		temp.heroesColor.Add(EColor.ORANGE);

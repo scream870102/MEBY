@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour {
 	//drag ref
 	//
 	//define which layer is ground
-	public List<LayerMask> groundLayer=new List<LayerMask>();
+	public List<LayerMask> groundLayer = new List<LayerMask> ( );
 	//
 	//
 	//const
@@ -22,12 +22,14 @@ public class PlayerMovement : MonoBehaviour {
 
 	//
 	//ref const
+	//these const get from parent Props
 	protected float basicSpeed;
 	protected float airSpeed;
 	protected int numMaxJump;
 	protected float jumpForce;
 	protected float groundRadius;
 	private bool isAirControl;
+
 	//
 	//referrence
 	protected IPlayer parent = null;
@@ -50,6 +52,9 @@ public class PlayerMovement : MonoBehaviour {
 	protected int numNowJump;
 	//store horizontal velocity
 	protected float moveHorizontal;
+	//stoer what direction is player facing true=facing right direction false=facing left direction
+	[SerializeField]
+	protected bool bFacingRight;
 	//set all info from props
 	//set detectGround
 	public void Start ( ) {
@@ -65,6 +70,7 @@ public class PlayerMovement : MonoBehaviour {
 			detectGround = transform.Find ("Foot");
 		}
 	}
+
 	void Update ( ) {
 		//if player can controll get horizontal move
 		if (isAirControl || bGround)
@@ -73,7 +79,18 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetButtonDown (parent.NumPlayer + "Jump")) {
 			Jump ( );
 		}
+		//Render player animation
+		//include what direction is player facing
+		Render ( );
 	}
+
+	//keep detect ground and call Move and Jump function 
+	protected virtual void FixedUpdate ( ) {
+		IsGrounded ( );
+		Move ( );
+		InJump ( );
+	}
+
 	//if can jump set bJump to true bGround false plus numNowJump
 	protected virtual void Jump ( ) {
 		if (numNowJump < numMaxJump) {
@@ -82,11 +99,17 @@ public class PlayerMovement : MonoBehaviour {
 			numNowJump++;
 		}
 	}
+
 	//get horiziontal velocity and move rigidbody call in fixed update
 	protected virtual void Move ( ) {
+		if (moveHorizontal > 0)
+			bFacingRight = true;
+		else if (moveHorizontal < 0)
+			bFacingRight = false;
 		Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
 		rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
 	}
+
 	//if can jump add force to rigidbody  call in fixed update
 	protected virtual void InJump ( ) {
 		if (bJump) {
@@ -95,17 +118,10 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	protected virtual void FixedUpdate ( ) {
-		IsGrounded ( );
-		if (rb != null) {
-			Move ( );
-			InJump ( );
-		}
-	}
 	//keep detect if player is on ground if true set numOnojump to zero bGround = true
 	protected void IsGrounded ( ) {
 		if (detectGround != null) {
-			foreach(LayerMask layer in groundLayer){
+			foreach (LayerMask layer in groundLayer) {
 				Collider2D [ ] colliders = Physics2D.OverlapCircleAll (detectGround.position, groundRadius, layer);
 				foreach (Collider2D collider in colliders) {
 					if (collider != gameObject) {
@@ -115,9 +131,21 @@ public class PlayerMovement : MonoBehaviour {
 					else
 						bGround = false;
 				}
-
 			}
 		}
+	}
+
+	//change player scale if player face different direction
+	protected void Render ( ) {
+		Vector3 temp = transform.localScale;
+		temp.x = bFacingRight?Mathf.Abs (temp.x): -Mathf.Abs (temp.x);
+		transform.localScale = temp;
+
+	}
+
+	//public method for other class to get Player state
+	public bool IsPlayerFacingRight ( ) {
+		return bFacingRight;
 	}
 
 }
