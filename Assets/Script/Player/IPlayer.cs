@@ -125,5 +125,16 @@ public class IPlayer : MonoBehaviour {
 		skill.enabled=true;
 	}
 
+	protected virtual void OnTriggerEnter2D(Collider2D other) {
+		if(other.name=="DeadZone"){
+			PlayerDead();
+		}
+	}
+	public virtual void PlayerDead(){
+		gameObject.SetActive(false);
+		UI.gameObject.SetActive(false);
+		Debug.Log(gameObject.name+"Dead");
+	}
+
 
 }

@@ -18,22 +18,25 @@ public class SceneController : MonoBehaviour {
 	//Init first scene
 	void Start ( ) {
 		bGetScene = false;
-		InitScene ("PlayScene");
+		playState = Test ( );
+		InitScene ("TitleScene");
 	}
 	void Update ( ) {
 		//if cureentscene not equal to sceneName try to get it
-		if (!bGetScene && currentScene != null && currentScene.SceneName != sceneName)
+		if (!bGetScene && currentScene == null)
 			GetIScene ( );
 	}
 	//public method to get next scene
 	public void SetScene (string sceneName) {
 		SceneManager.LoadScene (sceneName);
 		this.sceneName = sceneName;
+		currentScene = null;
 		bGetScene = false;
 	}
 	//to get IScene and its derived class
 	private void GetIScene ( ) {
-		currentScene = GameObject.Find (sceneName + "Controller").GetComponent<IScene> ( );
+		if (currentScene == null)
+			currentScene = GameObject.Find (sceneName + "Controller").GetComponent<IScene> ( );
 		if (currentScene != null && currentScene.name == sceneName)
 			bGetScene = true;
 	}
@@ -43,7 +46,7 @@ public class SceneController : MonoBehaviour {
 		currentScene = GameObject.Find (this.sceneName + "Controller").GetComponent (sceneName) as IScene;
 		currentScene.SceneController = this;
 		//test
-		playState = Test ( );
+		//playState = Test ( );
 	}
 
 	//for test
@@ -54,11 +57,11 @@ public class SceneController : MonoBehaviour {
 		temp.map = EMap.SUNNY_LAND;
 		temp.numOfPlayers = 2;
 		temp.heroes = new List<EHero> ( );
-		temp.heroesColor=new List<EColor>();
+		temp.heroesColor = new List<EColor> ( );
 		temp.heroes.Add (EHero.PIRATE_BEAR);
-		temp.heroesColor.Add(EColor.RED);
-		temp.heroes.Add(EHero.MASANARI);
-		temp.heroesColor.Add(EColor.ORANGE);
+		temp.heroesColor.Add (EColor.RED);
+		temp.heroes.Add (EHero.MASANARI);
+		temp.heroesColor.Add (EColor.ORANGE);
 		return temp;
 	}
 }

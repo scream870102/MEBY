@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	//define death state
 	protected virtual void OnDeath ( ) {
-		Debug.Log (parent.gameObject.name + "death");
+		parent.PlayerDead();
 	}
 	//Public method for other class to get player current health
 	public float GetHealth ( ) {

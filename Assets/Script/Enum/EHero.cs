@@ -4,5 +4,5 @@ public enum EHero {
     PIRATE_BEAR = 1,
     MORAL_DEVIL = 2,
     REBECCA = 3,
-    NONE = 5
+    NONE = 4
 }

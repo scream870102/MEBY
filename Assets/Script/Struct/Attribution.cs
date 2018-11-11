@@ -13,4 +13,5 @@ public struct Attribution {
 
     public List<Color> allColors;
     public List<ItemProps> allItemProps;
+    public List<GameObject> allMapPrefab;
 }

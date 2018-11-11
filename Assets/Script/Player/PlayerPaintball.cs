@@ -16,7 +16,7 @@ public class PlayerPaintball : MonoBehaviour {
 	protected EColor paintballColor;
 	public void Start ( ) {
 		if (parent != null) {
-			manager = GameObject.Find ("Grid").GetComponent<TilemapManager> ( );
+			manager = GameObject.Find ("Map").GetComponent<TilemapManager> ( );
 			playerColor = parent.Color;
 			ResetPaintball ( );
 		}

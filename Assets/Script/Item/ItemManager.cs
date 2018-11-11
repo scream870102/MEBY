@@ -14,6 +14,12 @@ public class ItemManager : MonoBehaviour {
 			item.Manager=this;
 			item.InitUnuse();
 		}
+		Transform itemSpawnPoses=GameObject.Find("Map").transform.Find("ItemSpawnPos");
+		if(itemSpawnPoses!=null){
+			for(int i = 0;i<itemSpawnPoses.childCount;i++){
+				itemSpawnPos.Add(itemSpawnPoses.GetChild(i));
+			}
+		}
 	}
 
 	//define when to set item to map

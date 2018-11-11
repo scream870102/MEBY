@@ -27,6 +27,7 @@ public class IItem : MonoBehaviour {
 	//store currnet item state
 	protected EItemState state;
 	public EItemState State { get { return state; } }
+	protected string buttonString="Fire2";
 
 	//Get componenet and set state to UNUSE
 	protected virtual void Awake ( ) {
@@ -41,7 +42,7 @@ public class IItem : MonoBehaviour {
 
 	protected virtual void Update ( ) {
 		//if player press use button and already have item use it
-		if (state == EItemState.PICK_UP && owner != null && Input.GetButtonDown (owner.NumPlayer + "Fire2")) {
+		if (state == EItemState.PICK_UP && owner != null && Input.GetButtonDown (owner.NumPlayer + buttonString)) {
 			InitUse ( );
 		}
 		//if state equal using start to count time and use the Item after using init it to Unuse

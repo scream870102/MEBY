@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 	//
 	//public method to make other class to spawn all player
 	public void SpawnAllPlayer ( ) {
-		for (int i = 0; i < heroType.Count; i++)
+		for (int i = 0; i < numOfPlayers; i++)
 			heroes.Add (SpawnPlayer (heroType [i], transform, i + 1, heroColor [i]));
 	}
 	//method define how to spawn player

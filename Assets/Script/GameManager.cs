@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	[HideInInspector]
 	public static GameManager instance = null;
 	protected SceneController sceneController = null;
+	public SceneController SceneController { get { return sceneController; } }
 	//attribution include all map character and props of all object
 	public Attribution attribution;
 	void Awake ( ) {
@@ -22,4 +23,5 @@ public class GameManager : MonoBehaviour {
 		sceneController = GetComponent<SceneController> ( );
 	}
 	protected virtual void Update ( ) { }
+	
 }

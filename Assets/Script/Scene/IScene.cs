@@ -17,6 +17,9 @@ public class IScene : MonoBehaviour {
 		set { if (sceneController == null) sceneController = value; }
 		get { return sceneController; }
 	}
+	protected virtual void Awake() {
+		SceneController = GameManager.instance.SceneController;
+	}
 	protected virtual void Start ( ) { }
 	protected virtual void Update ( ) { }
 }
