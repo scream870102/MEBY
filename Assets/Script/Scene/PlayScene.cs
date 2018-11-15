@@ -20,15 +20,22 @@ public class PlayScene : IScene {
 	//set info for playercontroller
 	protected override void Start ( ) {
 		playerController = GetComponent<PlayerController> ( );
+		playerController.playScene = this;
 		playState = SceneController.playState;
-		SpawnMap();
+		SpawnMap ( );
 		playerController.SetInfo (playState);
 		playerController.SpawnAllPlayer ( );
-		
+
 	}
 	protected override void Update ( ) { }
-	private void SpawnMap(){
-		GameObject temp=Instantiate(GameManager.instance.attribution.allMapPrefab[(int)playState.map]);
-		temp.name="Map";
+	//spawn map accordind to playState
+	private void SpawnMap ( ) {
+		GameObject temp = Instantiate (GameManager.instance.attribution.allMapPrefab [(int) playState.map]);
+		temp.name = "Map";
+	}
+	//if Game End set winner and enter to EndScene
+	public void GameEnd (IPlayer winner) {
+		GameManager.instance.SceneController.winner = winner.name;
+		GameManager.instance.SceneController.SetScene ("EndScene");
 	}
 }

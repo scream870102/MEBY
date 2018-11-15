@@ -5,15 +5,18 @@ using UnityEngine;
 // playercontroller is a class to controll all player
 //include how to spawn hero and set info for them
 public class PlayerController : MonoBehaviour {
+	//a playScene ref
+	public PlayScene playScene = null;
 	//define what hero to spawn
-	[SerializeField]
 	protected List<EHero> heroType = new List<EHero> ( );
 	//define hero color
 	protected List<EColor> heroColor = new List<EColor> ( );
 	//store ref for hero gameobject after spawn
+	[SerializeField]
 	protected List<GameObject> heroes = new List<GameObject> ( );
 	//define how many hero need to spawn
 	protected int numOfPlayers = 0;
+	protected int survivalPlayer = 0;
 	protected virtual void Start ( ) { }
 	protected virtual void Update ( ) { }
 	//public method make other class can set play info
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour {
 	//
 	//public method to make other class to spawn all player
 	public void SpawnAllPlayer ( ) {
+		survivalPlayer = numOfPlayers;
 		for (int i = 0; i < numOfPlayers; i++)
 			heroes.Add (SpawnPlayer (heroType [i], transform, i + 1, heroColor [i]));
 	}
@@ -43,10 +47,26 @@ public class PlayerController : MonoBehaviour {
 			temp.SetNumPlayer (numPlayer);
 			temp.Color = color;
 			temp.Init = true;
+			temp.PlayerController = this;
 			temp.Start ( );
 		}
 		tempObject.name = temp.NumPlayer;
 		tempObject.layer = LayerMask.NameToLayer ("Player" + color.ToString ( ));
 		return tempObject;
+	}
+
+	//call when playerDead remove player and if only one survive call playScene the game is end
+	//if want to remove one item in a list can't use iterator need to use for and iterate them from last item
+	//https://reurl.cc/MA46W
+	public void PlayerDead (IPlayer player) {
+		for (int i = heroes.Count - 1; i >= 0; i--) {
+			if (player.gameObject == heroes [i]) {
+				heroes.Remove (player.gameObject);
+				survivalPlayer--;
+			}
+		}
+		if (survivalPlayer == 1 && playScene != null) {
+			playScene.GameEnd (heroes [0].GetComponent<IPlayer> ( ));
+		}
 	}
 }

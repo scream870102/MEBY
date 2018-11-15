@@ -36,9 +36,9 @@ public class ISkill : MonoBehaviour {
 		//if timer > cool down time set isInCD to false
 		if (timer >= coolDown)
 			bInCD = false;
-		if(bActive && !bInCD) {
-			UseSkill();
-        }
+		if (bActive && !bInCD) {
+			UseSkill ( );
+		}
 	}
 	//set if this skill can use
 	public virtual void SetActive (bool active) {
@@ -50,5 +50,5 @@ public class ISkill : MonoBehaviour {
 		timer = 0.0f;
 	}
 
-	protected virtual void UseSkill(){}
+	protected virtual void UseSkill ( ) { }
 }

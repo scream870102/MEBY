@@ -15,10 +15,11 @@ public class SceneController : MonoBehaviour {
 	//determine how game play
 	//include essential info
 	public PlayState playState;
+	public string winner;
 	//Init first scene
 	void Start ( ) {
 		bGetScene = false;
-		playState = Test ( );
+		//playState = Test ( );
 		InitScene ("TitleScene");
 	}
 	void Update ( ) {
@@ -35,10 +36,16 @@ public class SceneController : MonoBehaviour {
 	}
 	//to get IScene and its derived class
 	private void GetIScene ( ) {
-		if (currentScene == null)
-			currentScene = GameObject.Find (sceneName + "Controller").GetComponent<IScene> ( );
-		if (currentScene != null && currentScene.name == sceneName)
+		if (currentScene == null) {
+			GameObject temp = GameObject.Find (sceneName + "Controller");
+			if (temp != null)
+				currentScene = temp.GetComponent<IScene> ( );
+		}
+
+		if (currentScene != null && currentScene.name == sceneName + "Controller") {
 			bGetScene = true;
+		}
+
 	}
 	//Init scene
 	public void InitScene (string sceneName) {

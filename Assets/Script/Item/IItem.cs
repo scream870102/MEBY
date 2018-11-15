@@ -27,7 +27,7 @@ public class IItem : MonoBehaviour {
 	//store currnet item state
 	protected EItemState state;
 	public EItemState State { get { return state; } }
-	protected string buttonString="Fire2";
+	protected string buttonString = "Fire2";
 
 	//Get componenet and set state to UNUSE
 	protected virtual void Awake ( ) {

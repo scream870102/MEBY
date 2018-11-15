@@ -37,7 +37,7 @@ public class IPlayer : MonoBehaviour {
 	protected PlayerPaintball paintball = null;
 	//ref for player Skill
 	[SerializeField]
-	protected ISkill skill=null;
+	protected ISkill skill = null;
 	//ref for playerUI
 	protected PlayerUI UI = null;
 	//props store all player property from game manager attribution
@@ -53,6 +53,9 @@ public class IPlayer : MonoBehaviour {
 	public string NumPlayer { get { return numPlayer; } }
 	//ref for rigidbody
 	protected Rigidbody2D rb;
+	//ref for playerController
+	protected PlayerController playerController = null;
+	public PlayerController PlayerController { get { return playerController; } set { if (playerController == null) playerController = value; } }
 	//to get player movement and set its parent
 	//call movement start method
 	//find foot object
@@ -65,7 +68,7 @@ public class IPlayer : MonoBehaviour {
 			skill = GetComponent<ISkill> ( );
 			UI = GameObject.Find (numPlayer + "UI").GetComponent<PlayerUI> ( );
 			skill.Parent = this;
-			skill.SetActive(true);
+			skill.SetActive (true);
 			UI.Parent = this;
 			health.Parent = this;
 			attack.Parent = this;
@@ -108,33 +111,34 @@ public class IPlayer : MonoBehaviour {
 	}
 
 	//Stop Player attack movement paintball and skill action for specific seconds
-	public void StopAction(float second){
-		attack.enabled=false;
-		movement.enabled=false;
-		paintball.enabled=false;
-		skill.enabled=false;
-		StartCoroutine(StopActionCoroutine(second));
+	public void StopAction (float second) {
+		attack.enabled = false;
+		movement.enabled = false;
+		paintball.enabled = false;
+		skill.enabled = false;
+		StartCoroutine (StopActionCoroutine (second));
 	}
 
 	//Coroutine for stop player action
-	IEnumerator StopActionCoroutine ( float stopSecond) {
+	IEnumerator StopActionCoroutine (float stopSecond) {
 		yield return new WaitForSeconds (stopSecond);
-		attack.enabled=true;
-		movement.enabled=true;
-		paintball.enabled=true;
-		skill.enabled=true;
+		attack.enabled = true;
+		movement.enabled = true;
+		paintball.enabled = true;
+		skill.enabled = true;
 	}
 
-	protected virtual void OnTriggerEnter2D(Collider2D other) {
-		if(other.name=="DeadZone"){
-			PlayerDead();
+	protected virtual void OnTriggerEnter2D (Collider2D other) {
+		if (other.name == "DeadZone") {
+			PlayerDead ( );
 		}
 	}
-	public virtual void PlayerDead(){
-		gameObject.SetActive(false);
-		UI.gameObject.SetActive(false);
-		Debug.Log(gameObject.name+"Dead");
-	}
 
+	//if player Dead call this function
+	public virtual void PlayerDead ( ) {
+		playerController.PlayerDead (this);
+		gameObject.SetActive (false);
+		UI.gameObject.SetActive (false);
+	}
 
 }

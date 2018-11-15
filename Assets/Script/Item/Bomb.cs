@@ -9,6 +9,7 @@ public class Bomb : IItem {
 	protected Rigidbody2D rb;
 	//force to add to the bomb when player throw it
 	public Vector2 force;
+	//define how many damage will add to player
 	public float attackPoint;
 	protected override void Start ( ) {
 		//set attribution --get the data from gamemanager

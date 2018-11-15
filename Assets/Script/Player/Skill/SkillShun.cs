@@ -14,9 +14,9 @@ public class SkillShun : ISkill {
         base.Start ( );
         //Get skill coolDown time Number from GameManager instance attribution
         coolDown = GameManager.instance.attribution.allSkillProps [(int) ESkill.SHUN].skillCD;
-        bMark=false;
+        bMark = false;
     }
-    protected override void UseSkill(){
+    protected override void UseSkill ( ) {
         //if mark position not setting
         if (!bMark) {
             //Get playnumber string from parent(IPlayer) 

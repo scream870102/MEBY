@@ -48,7 +48,7 @@ public class FlareArrow : MonoBehaviour {
 	//when arrow hit player stop that player action also reset arrow player
 	private void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.tag == "Player" && other.gameObject != parent) {
-			//定身其他角色
+			//freeze other player
 			other.gameObject.GetComponent<IPlayer> ( ).StopAction (arrowActionTime);
 			transform.parent = parent.transform;
 			this.gameObject.SetActive (false);
