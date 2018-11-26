@@ -53,6 +53,7 @@ public class IPlayer : MonoBehaviour {
 	public string NumPlayer { get { return numPlayer; } }
 	//ref for rigidbody
 	protected Rigidbody2D rb;
+	public Rigidbody2D Rigidbody2D{get{return rb;}}
 	//ref for playerController
 	protected PlayerController playerController = null;
 	public PlayerController PlayerController { get { return playerController; } set { if (playerController == null) playerController = value; } }
@@ -141,4 +142,7 @@ public class IPlayer : MonoBehaviour {
 		UI.gameObject.SetActive (false);
 	}
 
+	public virtual void SetMovement(bool value){
+		movement.enabled=value;
+	}
 }

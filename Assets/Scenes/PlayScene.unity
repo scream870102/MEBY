@@ -903,7 +903,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e9696d37747c943a70c50a01b6c149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroType: 
+  playScene: {fileID: 0}
+  heroes: []
 --- !u!114 &1571914796
 MonoBehaviour:
   m_ObjectHideFlags: 0

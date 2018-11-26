@@ -619,6 +619,21 @@ Prefab:
       propertyPath: attribution.allMapPrefab.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allSkillProps.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroPrefab.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4466805339450248, guid: 55405aabac8840544b083d4dafe9efeb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -657,6 +672,137 @@ Prefab:
       value: 
       objectReference: {fileID: 1070305203052434, guid: 847374ef8dc72854c8365bcc4df8bbdf,
         type: 2}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[0].basicSpeed
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[0].numMaxJump
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[1].basicSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[1].numMaxJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[0].groundRadius
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[1].groundRadius
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[1].isAirControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[1].jumpForce
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[1].airSpeed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[1].mass
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].hero
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].basicHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].basicAttackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].basicAttackSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].basicAttackPoint
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].basicSpeed
+      value: 225
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].numMaxJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].jumpForce
+      value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].groundRadius
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].isAirControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allSkillProps.Array.data[2].skillName
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allSkillProps.Array.data[2].skillCD
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allSkillProps.Array.data[2].skillActionTime
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 1956559101026952, guid: b4e3277f921b7b04393ae94dc1b9b969,
+        type: 2}
+    - target: {fileID: 114294660216894438, guid: 55405aabac8840544b083d4dafe9efeb,
+        type: 2}
+      propertyPath: attribution.allHeroProps.Array.data[2].airSpeed
+      value: 125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55405aabac8840544b083d4dafe9efeb, type: 2}
   m_IsPrefabAsset: 0

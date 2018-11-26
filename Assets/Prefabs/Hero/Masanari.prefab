@@ -199,15 +199,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
   - serializedVersion: 2
-    m_Bits: 4096
-  - serializedVersion: 2
-    m_Bits: 8192
-  - serializedVersion: 2
-    m_Bits: 16384
-  - serializedVersion: 2
-    m_Bits: 32768
+    m_Bits: 126976
   smoothDamp: 0.05
   detectGround: {fileID: 4372086871355338}
+  bFacingRight: 0
 --- !u!114 &114497910500872368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11559ef639d3abb44af507d6c75b6eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hero: 0
+  skill: {fileID: 0}
 --- !u!114 &114691153601814494
 MonoBehaviour:
   m_ObjectHideFlags: 1

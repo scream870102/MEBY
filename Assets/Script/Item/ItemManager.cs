@@ -15,6 +15,7 @@ public class ItemManager : MonoBehaviour {
 			item.InitUnuse ( );
 		}
 		Transform itemSpawnPoses = GameObject.Find ("Map").transform.Find ("ItemSpawnPos");
+		itemSpawnPos.Clear();
 		if (itemSpawnPoses != null) {
 			for (int i = 0; i < itemSpawnPoses.childCount; i++) {
 				itemSpawnPos.Add (itemSpawnPoses.GetChild (i));

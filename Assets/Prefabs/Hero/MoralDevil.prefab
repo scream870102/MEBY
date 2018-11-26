@@ -20,11 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4172842323263542}
   - component: {fileID: 212268841170380196}
-  - component: {fileID: 114207786640923142}
   - component: {fileID: 50084289436030028}
   - component: {fileID: 61543741890699434}
+  - component: {fileID: 114046393807397626}
   m_Layer: 0
-  m_Name: FlareArrow
+  m_Name: GodHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,10 +61,10 @@ GameObject:
   - component: {fileID: 114032968891785012}
   - component: {fileID: 114691153601814494}
   - component: {fileID: 114497910500872368}
-  - component: {fileID: 114749855415013588}
-  - component: {fileID: 114992057598145076}
+  - component: {fileID: 114218081603739372}
+  - component: {fileID: 114743060550179240}
   m_Layer: 0
-  m_Name: PirateBear
+  m_Name: MoralDevil
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 1027458207483852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -2, y: 2, z: 1}
+  m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4455818247791702}
   m_RootOrder: 0
@@ -197,7 +197,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.41}
+    oldSize: {x: 0.35, y: 0.32}
     newSize: {x: 0.4, y: 0.41}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   smoothDamp: 0.05
   detectGround: {fileID: 4372086871355338}
   bFacingRight: 0
---- !u!114 &114207786640923142
+--- !u!114 &114046393807397626
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,15 +289,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1027458207483852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd1758ce51fb0b341a99fcd19a8a37af, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dfa69d63c0d67341b6eb6e6c90b8a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 1956559101026952}
-  parentIPlyaer: {fileID: 114749855415013588}
-  rb: {fileID: 50084289436030028}
-  force: {x: 500, y: 0}
-  arrowActionTime: 0
-  originalScale: {x: -2, y: 2, z: 1}
+  parent: {fileID: 114743060550179240}
+  godHand: {fileID: 114218081603739372}
+--- !u!114 &114218081603739372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956559101026952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6788b8016feb3694e92c250805154ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handObject: {fileID: 1027458207483852}
+  stopActionTime: 1
+  velocity: {x: 15, y: 0}
+  minmusDistance: 0.25
 --- !u!114 &114497910500872368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitCollider: {fileID: 61909583171388532}
---- !u!114 &114749855415013588
+--- !u!114 &114743060550179240
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,22 +352,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1956559101026952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63f9f71099405c64ea78b7f6effdfa28, type: 3}
+  m_Script: {fileID: 11500000, guid: e0b39757484238441ad2835cfb42246d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
---- !u!114 &114992057598145076
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956559101026952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c9fa5418242c7409d57f17cc4f8c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowObject: {fileID: 1027458207483852}
+  skill: {fileID: 114218081603739372}
 --- !u!212 &212268841170380196
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -392,7 +391,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c97786e9459b34e058449b84cd9aab61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54bcabc188c6640f1a298f013d4716df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

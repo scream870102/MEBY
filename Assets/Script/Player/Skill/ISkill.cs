@@ -32,10 +32,14 @@ public class ISkill : MonoBehaviour {
 	}
 	protected virtual void Update ( ) {
 		//every frame add deltaTime to timer
-		timer += Time.deltaTime;
+		if(bInCD){
+			timer += Time.deltaTime;
+			if (timer >= coolDown)
+				bInCD = false;
+		}
+			
 		//if timer > cool down time set isInCD to false
-		if (timer >= coolDown)
-			bInCD = false;
+		
 		if (bActive && !bInCD) {
 			UseSkill ( );
 		}

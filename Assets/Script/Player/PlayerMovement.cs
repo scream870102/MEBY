@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Update ( ) {
+		IsGrounded ( );
 		//if player can controll get horizontal move
 		if (isAirControl || bGround)
 			moveHorizontal = Input.GetAxisRaw (parent.NumPlayer + "Horizontal") * (bGround?basicSpeed : airSpeed);
@@ -86,7 +87,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	//keep detect ground and call Move and Jump function 
 	protected virtual void FixedUpdate ( ) {
-		IsGrounded ( );
+		
 		Move ( );
 		InJump ( );
 	}
