@@ -14,6 +14,7 @@ public class IItem : MonoBehaviour {
 	//item in other state except for pickable state disable spriterender
 	protected SpriteRenderer rend = null;
 	//store the ref for itmer owner
+	[SerializeField]
 	protected IPlayer owner = null;
 	public IPlayer Owner { get { return owner; } set { if (owner == null) owner = value; } }
 	//store ref for itemManager
@@ -25,6 +26,7 @@ public class IItem : MonoBehaviour {
 	//timer to count item effect time
 	protected float timer = 0.0f;
 	//store currnet item state
+	[SerializeField]
 	protected EItemState state;
 	public EItemState State { get { return state; } }
 	protected string buttonString = "Fire2";
@@ -59,9 +61,13 @@ public class IItem : MonoBehaviour {
 	}
 
 	//if player touch the item which state equal pickable
-	protected virtual void OnTriggerEnter2D (Collider2D other) {
-		if (other.gameObject.tag == "Player" && state == EItemState.PICKABLE)
-			InitPickUp (other.gameObject.GetComponent<IPlayer> ( ));
+	protected virtual void OnCollisionEnter2D (Collision2D other) {
+		if (other.gameObject.tag == "Player" && state == EItemState.PICKABLE) {
+			IPlayer owner = other.gameObject.GetComponent<IPlayer> ( );
+			if (owner.Item == null)
+				InitPickUp (owner);
+		}
+
 	}
 
 	//MUST OVERRIDE
@@ -77,6 +83,7 @@ public class IItem : MonoBehaviour {
 	//init state to pick_up--disable collider and sprite and set owner 
 	protected void InitPickUp (IPlayer owner) {
 		this.owner = owner;
+		owner.Item = this;
 		col.enabled = false;
 		rend.enabled = false;
 		state = EItemState.PICK_UP;
@@ -84,11 +91,14 @@ public class IItem : MonoBehaviour {
 
 	//init state to unuse--item doesn't show on the map just keep ref in the ItemManager
 	public virtual void InitUnuse ( ) {
+		if (owner != null)
+			owner.Item = null;
 		owner = null;
 		col.enabled = false;
 		rend.enabled = false;
 		gameObject.SetActive (false);
 		state = EItemState.UNUSE;
+		manager.ItemAlreadyUse ( );
 	}
 
 	//init state to pickable--item show on the map and can be picked up by player

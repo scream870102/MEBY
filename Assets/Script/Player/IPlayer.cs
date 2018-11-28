@@ -53,10 +53,15 @@ public class IPlayer : MonoBehaviour {
 	public string NumPlayer { get { return numPlayer; } }
 	//ref for rigidbody
 	protected Rigidbody2D rb;
-	public Rigidbody2D Rigidbody2D{get{return rb;}}
+	public Rigidbody2D Rigidbody2D { get { return rb; } }
 	//ref for playerController
 	protected PlayerController playerController = null;
 	public PlayerController PlayerController { get { return playerController; } set { if (playerController == null) playerController = value; } }
+	protected IItem item = null;
+	public IItem Item {
+		get { return item; }
+		set { item = value; }
+	}
 	//to get player movement and set its parent
 	//call movement start method
 	//find foot object
@@ -142,7 +147,17 @@ public class IPlayer : MonoBehaviour {
 		UI.gameObject.SetActive (false);
 	}
 
-	public virtual void SetMovement(bool value){
-		movement.enabled=value;
+	public virtual void SetMovement (bool value) {
+		movement.enabled = value;
+	}
+
+	public virtual void SetMoveSpeed (float value, bool bLimitTime = false, float limitTime = 0.0f) {
+		movement.SpeedBonus = value;
+		if (bLimitTime)
+			StartCoroutine (MoveSpeedCoroutine (limitTime));
+	}
+	IEnumerator MoveSpeedCoroutine (float limitTime) {
+		yield return new WaitForSeconds (limitTime);
+		movement.SpeedBonus = 1.0f;
 	}
 }

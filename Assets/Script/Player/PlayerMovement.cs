@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour {
 	//stoer what direction is player facing true=facing right direction false=facing left direction
 	[SerializeField]
 	protected bool bFacingRight;
+	protected float speedBonus = 1.0f;
+	public float SpeedBonus { set { speedBonus = value; } }
 	//set all info from props
 	//set detectGround
 	public void Start ( ) {
@@ -87,7 +89,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	//keep detect ground and call Move and Jump function 
 	protected virtual void FixedUpdate ( ) {
-		
+
 		Move ( );
 		InJump ( );
 	}
@@ -107,7 +109,7 @@ public class PlayerMovement : MonoBehaviour {
 			bFacingRight = true;
 		else if (moveHorizontal < 0)
 			bFacingRight = false;
-		Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
+		Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime * speedBonus, rb.velocity.y);
 		rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
 	}
 

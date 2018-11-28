@@ -108,6 +108,7 @@ public class SelectScene : IScene {
 			}
 			if (allCheck) {
 				this.playState.map = (EMap) nowSelecteMap;
+				this.playState.gameSetTime = 3000.0f;
 				GameManager.instance.SceneController.playState = this.playState;
 				GameManager.instance.SceneController.SetScene ("PlayScene");
 			}

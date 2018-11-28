@@ -12,5 +12,7 @@ public struct PlayState {
     //store herotypes for game
     public List<EHero> heroes;
     //store herocolor
-    public List<EColor>heroesColor;
+    public List<EColor> heroesColor;
+    //store how long does a game set
+    public float gameSetTime;
 }
