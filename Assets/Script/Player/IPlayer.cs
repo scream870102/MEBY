@@ -35,6 +35,7 @@ public class IPlayer : MonoBehaviour {
 	//ref for player paintball
 	//define how paintball react
 	protected PlayerPaintball paintball = null;
+	protected PlayerAnimator animator = null;
 	//ref for player Skill
 	[SerializeField]
 	protected ISkill skill = null;
@@ -62,6 +63,10 @@ public class IPlayer : MonoBehaviour {
 		get { return item; }
 		set { item = value; }
 	}
+	[SerializeField]
+	protected EPlayerState playerState;
+	public EPlayerState PlayerState { get { return playerState; } set { playerState = value; } }
+	public bool IsPlayerFacingRight{get{return movement.IsPlayerFacingRight;}}
 	//to get player movement and set its parent
 	//call movement start method
 	//find foot object
@@ -72,6 +77,7 @@ public class IPlayer : MonoBehaviour {
 			health = GetComponent<PlayerHealth> ( );
 			paintball = GetComponent<PlayerPaintball> ( );
 			skill = GetComponent<ISkill> ( );
+			animator=GetComponent<PlayerAnimator>();
 			UI = GameObject.Find (numPlayer + "UI").GetComponent<PlayerUI> ( );
 			skill.Parent = this;
 			skill.SetActive (true);
@@ -80,6 +86,8 @@ public class IPlayer : MonoBehaviour {
 			attack.Parent = this;
 			movement.Parent = this;
 			paintball.Parent = this;
+			animator.Parent=this;
+			animator.Start();
 			UI.Start ( );
 			attack.Start ( );
 			movement.Start ( );
@@ -109,11 +117,6 @@ public class IPlayer : MonoBehaviour {
 	//public method for other class to get next painball Color
 	public EColor GetNextPaintBallColor ( ) {
 		return paintball.GetPaintballColor ( );
-	}
-
-	//public method for other class to get what direction is player current facing
-	public bool IsPlayerFacingRight ( ) {
-		return movement.IsPlayerFacingRight ( );
 	}
 
 	//Stop Player attack movement paintball and skill action for specific seconds

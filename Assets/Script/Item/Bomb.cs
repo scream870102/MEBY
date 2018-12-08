@@ -31,7 +31,7 @@ public class Bomb : IItem {
 			rb.velocity = new Vector2 (0.0f, 0.0f);
 			Vector3 pos = owner.transform.position;
 			//get owner direction and set force to rigidbody
-			if (owner.IsPlayerFacingRight ( )) {
+			if (owner.IsPlayerFacingRight) {
 				pos.x += posOffset;
 				transform.position = pos;
 				rb.AddForce (force, ForceMode2D.Impulse);

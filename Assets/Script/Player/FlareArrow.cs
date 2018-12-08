@@ -28,7 +28,7 @@ public class FlareArrow : MonoBehaviour {
 			transform.position = parent.transform.position;
 			transform.parent = null;
 			rb.velocity = new Vector2 (0.0f, 0.0f);
-			if (parentIPlyaer.IsPlayerFacingRight ( )) {
+			if (parentIPlyaer.IsPlayerFacingRight ) {
 				transform.localScale = originalScale;
 				rb.AddForce (force);
 			}

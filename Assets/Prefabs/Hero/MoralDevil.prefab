@@ -57,12 +57,13 @@ GameObject:
   - component: {fileID: 95716994341622550}
   - component: {fileID: 50171928673076602}
   - component: {fileID: 70934837148790920}
+  - component: {fileID: 114743060550179240}
   - component: {fileID: 114698404274595710}
   - component: {fileID: 114032968891785012}
   - component: {fileID: 114691153601814494}
   - component: {fileID: 114497910500872368}
   - component: {fileID: 114218081603739372}
-  - component: {fileID: 114743060550179240}
+  - component: {fileID: 114883522709864372}
   m_Layer: 0
   m_Name: MoralDevil
   m_TagString: Player
@@ -190,7 +191,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -280,7 +281,7 @@ MonoBehaviour:
     m_Bits: 126976
   smoothDamp: 0.05
   detectGround: {fileID: 4372086871355338}
-  animator: {fileID: 95716994341622550}
+  bGround: 0
   bFacingRight: 0
 --- !u!114 &114046393807397626
 MonoBehaviour:
@@ -357,6 +358,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 114218081603739372}
+  playerState: 0
+--- !u!114 &114883522709864372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956559101026952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9077d062a621ec4ab352991d5c4aa76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 95716994341622550}
 --- !u!212 &212268841170380196
 SpriteRenderer:
   m_ObjectHideFlags: 1

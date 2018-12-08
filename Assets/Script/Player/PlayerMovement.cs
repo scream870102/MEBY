@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour {
 		set { if (parent == null) parent = value; }
 
 	}
-	public Animator animator;
 	//
 	//
 	//field
@@ -57,6 +56,7 @@ public class PlayerMovement : MonoBehaviour {
 	//stoer what direction is player facing true=facing right direction false=facing left direction
 	[SerializeField]
 	protected bool bFacingRight;
+	public bool IsPlayerFacingRight{get{return bFacingRight;}}
 	protected float speedBonus = 1.0f;
 	public float SpeedBonus { set { speedBonus = value; } }
 	//set all info from props
@@ -86,7 +86,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		//Render player animation
 		//include what direction is player facing
-		Render ( );
 	}
 
 	//keep detect ground and call Move and Jump function 
@@ -99,7 +98,6 @@ public class PlayerMovement : MonoBehaviour {
 	//if can jump set bJump to true bGround false plus numNowJump
 	protected virtual void Jump ( ) {
 		if (numNowJump < numMaxJump) {
-			animator.SetBool("Jump",true);
 			bJump = true;
 			bGround = false;
 			numNowJump++;
@@ -108,10 +106,16 @@ public class PlayerMovement : MonoBehaviour {
 
 	//get horiziontal velocity and move rigidbody call in fixed update
 	protected virtual void Move ( ) {
-		if (moveHorizontal > 0)
+		if (moveHorizontal > 0){
 			bFacingRight = true;
-		else if (moveHorizontal < 0)
+			parent.PlayerState=EPlayerState.WALK;
+		}
+			
+		else if (moveHorizontal < 0){
 			bFacingRight = false;
+			parent.PlayerState=EPlayerState.WALK;
+		}
+			
 		Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime * speedBonus, rb.velocity.y);
 		rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
 	}
@@ -119,6 +123,7 @@ public class PlayerMovement : MonoBehaviour {
 	//if can jump add force to rigidbody  call in fixed update
 	protected virtual void InJump ( ) {
 		if (bJump) {
+			parent.PlayerState=EPlayerState.JUMP;
 			rb.AddForce (new Vector2 (0f, jumpForce));
 			bJump = false;
 		}
@@ -133,7 +138,7 @@ public class PlayerMovement : MonoBehaviour {
 					if (collider != gameObject) {
 						numNowJump = 0;
 						bGround = true;
-						animator.SetBool("Jump",false);
+						parent.PlayerState=EPlayerState.IDLE;
 					}
 					else
 						bGround = false;
@@ -142,17 +147,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	//change player scale if player face different direction
-	protected void Render ( ) {
-		Vector3 temp = transform.localScale;
-		temp.x = bFacingRight?Mathf.Abs (temp.x): -Mathf.Abs (temp.x);
-		transform.localScale = temp;
 
-	}
-
-	//public method for other class to get Player state
-	public bool IsPlayerFacingRight ( ) {
-		return bFacingRight;
-	}
 
 }

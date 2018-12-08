@@ -75,7 +75,7 @@ public class SkillGodHand : ISkill {
 			case GOD_HAND_STATE.USING:
 				//set direction first time
 				if (direction == DIRECTION.NONE)
-					direction = Parent.IsPlayerFacingRight ( ) ? DIRECTION.RIGHT : DIRECTION.LEFT;
+					direction = Parent.IsPlayerFacingRight ? DIRECTION.RIGHT : DIRECTION.LEFT;
 				//disable player move
 				Parent.SetMovement (false);
 				//keep accumulation timer
