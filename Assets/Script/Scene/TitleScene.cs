@@ -12,7 +12,7 @@ public class TitleScene : IScene {
 	protected override void Start ( ) { }
 	//if space key got down enter to select scene
 	protected override void Update ( ) {
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetButtonDown ("Player1Jump")) {
 			GameManager.instance.SceneController.SetScene ("SelectScene");
 		}
 	}

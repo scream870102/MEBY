@@ -24,7 +24,7 @@ public class PlayerPaintball : MonoBehaviour {
 
 	void Update ( ) {
 		//if player hit use button set the tile behind it also reset paintball color
-		if (manager != null && Input.GetButtonDown (parent.NumPlayer + "Fire3")) {
+		if (manager != null && Input.GetButtonDown (parent.NumPlayer + "Paintball")) {
 			manager.SetTile (paintballColor, transform.position);
 			ResetPaintball ( );
 		}

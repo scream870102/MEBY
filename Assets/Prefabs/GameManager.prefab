@@ -56,6 +56,8 @@ MonoBehaviour:
     allHeroPrefab:
     - {fileID: 1956559101026952, guid: 0ce633029e9ea474c810443e16920bfb, type: 2}
     - {fileID: 1956559101026952, guid: d25b441583716da41955ab0673d5f04f, type: 2}
+    - {fileID: 1956559101026952, guid: b4e3277f921b7b04393ae94dc1b9b969, type: 2}
+    - {fileID: 1956559101026952, guid: a146ea1e44983e34ca9e401244cd7f3f, type: 2}
     allHeroProps:
     - hero: 0
       mass: 5
@@ -63,23 +65,47 @@ MonoBehaviour:
       basicAttackInterval: 0.5
       basicAttackSpeed: 0.2
       basicAttackPoint: 21
-      basicSpeed: 300
+      basicSpeed: 350
       airSpeed: 150
-      numMaxJump: 100000
+      numMaxJump: 2
       jumpForce: 2000
-      groundRadius: 0.02
+      groundRadius: 0.03
       isAirControl: 1
     - hero: 1
+      mass: 6
+      basicHealth: 100
+      basicAttackInterval: 0.5
+      basicAttackSpeed: 0.2
+      basicAttackPoint: 21
+      basicSpeed: 250
+      airSpeed: 150
+      numMaxJump: 1
+      jumpForce: 1800
+      groundRadius: 0.03
+      isAirControl: 1
+    - hero: 2
+      mass: 10
+      basicHealth: 100
+      basicAttackInterval: 0.5
+      basicAttackSpeed: 0.2
+      basicAttackPoint: 21
+      basicSpeed: 225
+      airSpeed: 125
+      numMaxJump: 1
+      jumpForce: 3500
+      groundRadius: 0.5
+      isAirControl: 1
+    - hero: 3
       mass: 5
       basicHealth: 100
       basicAttackInterval: 0.5
       basicAttackSpeed: 0.2
       basicAttackPoint: 21
-      basicSpeed: 300
-      airSpeed: 150
-      numMaxJump: 100000
-      jumpForce: 2000
-      groundRadius: 0.02
+      basicSpeed: 225
+      airSpeed: 125
+      numMaxJump: 1
+      jumpForce: 3500
+      groundRadius: 0.03
       isAirControl: 1
     allSkillProps:
     - skillName: 0
@@ -88,11 +114,17 @@ MonoBehaviour:
     - skillName: 1
       skillCD: 7
       skillActionTime: 5
+    - skillName: 2
+      skillCD: 5
+      skillActionTime: 0.75
+    - skillName: 3
+      skillCD: 5
+      skillActionTime: 0.75
     allColors:
-    - {r: 1, g: 0.78431374, b: 0.78431374, a: 1}
-    - {r: 0.78431374, g: 1, b: 0.78431374, a: 1}
-    - {r: 0.78431374, g: 0.78431374, b: 1, a: 1}
-    - {r: 1, g: 0.5882353, b: 0, a: 1}
+    - {r: 0.7882353, g: 0.21568628, b: 0.7372549, a: 1}
+    - {r: 0.2509804, g: 0.79607844, b: 0.24313726, a: 1}
+    - {r: 0.09411765, g: 0.5921569, b: 0.9019608, a: 1}
+    - {r: 0.76862746, g: 0.80784315, b: 0.09019608, a: 1}
     allItemProps:
     - itemType: 0
       bInstantItem: 1
@@ -100,6 +132,8 @@ MonoBehaviour:
     - itemType: 1
       bInstantItem: 0
       continuousTime: 5
+    allMapPrefab:
+    - {fileID: 1070305203052434, guid: 847374ef8dc72854c8365bcc4df8bbdf, type: 2}
 --- !u!114 &114942692933876758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,3 +152,5 @@ MonoBehaviour:
     numOfPlayers: 0
     heroes: 
     heroesColor: 
+    gameSetTime: 0
+  winner: 

@@ -28,7 +28,7 @@ public class ISkill : MonoBehaviour {
 	protected virtual void Start ( ) {
 		timer = .0f;
 		bInCD = false;
-		buttonString = "Fire2";
+		buttonString = "Skill";
 	}
 	protected virtual void Update ( ) {
 		//every frame add deltaTime to timer

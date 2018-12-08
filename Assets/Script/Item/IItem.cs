@@ -29,7 +29,7 @@ public class IItem : MonoBehaviour {
 	[SerializeField]
 	protected EItemState state;
 	public EItemState State { get { return state; } }
-	protected string buttonString = "Fire2";
+	protected string buttonString = "Item";
 
 	//Get componenet and set state to UNUSE
 	protected virtual void Awake ( ) {

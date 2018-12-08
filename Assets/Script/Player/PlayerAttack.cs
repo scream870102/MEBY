@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour {
 
 	protected virtual void Update ( ) {
 		//when player hit attack button set bool and timer
-		if (Input.GetButtonDown (parent.NumPlayer + "Fire1") && hitCollider != null && !bInCD) {
+		if (Input.GetButtonDown (parent.NumPlayer + "Attack") && hitCollider != null && !bInCD) {
 			bAttacknig = true;
 			hitCollider.enabled = true;
 		}

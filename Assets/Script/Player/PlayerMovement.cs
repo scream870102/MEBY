@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour {
 		set { if (parent == null) parent = value; }
 
 	}
+	public Animator animator;
 	//
 	//
 	//field
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour {
 	//bool for jumping state
 	protected bool bJump;
 	//bool for on ground
+	[SerializeField]
 	protected bool bGround;
 	//store current jump time
 	protected int numNowJump;
@@ -97,6 +99,7 @@ public class PlayerMovement : MonoBehaviour {
 	//if can jump set bJump to true bGround false plus numNowJump
 	protected virtual void Jump ( ) {
 		if (numNowJump < numMaxJump) {
+			animator.SetBool("Jump",true);
 			bJump = true;
 			bGround = false;
 			numNowJump++;
@@ -130,6 +133,7 @@ public class PlayerMovement : MonoBehaviour {
 					if (collider != gameObject) {
 						numNowJump = 0;
 						bGround = true;
+						animator.SetBool("Jump",false);
 					}
 					else
 						bGround = false;
