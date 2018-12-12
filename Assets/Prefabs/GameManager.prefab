@@ -126,12 +126,18 @@ MonoBehaviour:
     - {r: 0.09411765, g: 0.5921569, b: 0.9019608, a: 1}
     - {r: 0.76862746, g: 0.80784315, b: 0.09019608, a: 1}
     allItemProps:
-    - itemType: 0
-      bInstantItem: 1
+    - itemName: 0
+      itemType: 0
       continuousTime: 0
-    - itemType: 1
-      bInstantItem: 0
-      continuousTime: 5
+    - itemName: 1
+      itemType: 2
+      continuousTime: 0
+    - itemName: 2
+      itemType: 1
+      continuousTime: 10
+    - itemName: 3
+      itemType: 0
+      continuousTime: 0
     allMapPrefab:
     - {fileID: 1070305203052434, guid: 847374ef8dc72854c8365bcc4df8bbdf, type: 2}
 --- !u!114 &114942692933876758

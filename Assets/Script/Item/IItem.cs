@@ -6,6 +6,7 @@ using UnityEngine;
 //base class for all item
 [RequireComponent (typeof (Collider2D))]
 [RequireComponent (typeof (SpriteRenderer))]
+[RequireComponent (typeof (Rigidbody2D))]
 public class IItem : MonoBehaviour {
 	//ref for collider
 	//collider is for detecting which object touch the item 
@@ -47,16 +48,31 @@ public class IItem : MonoBehaviour {
 		if (state == EItemState.PICK_UP && owner != null && Input.GetButtonDown (owner.NumPlayer + buttonString)) {
 			InitUse ( );
 		}
-		//if state equal using start to count time and use the Item after using init it to Unuse
-		if (state == EItemState.USING) {
-			timer += Time.deltaTime;
-			if (timer >= props.continuousTime && !props.bInstantItem) {
-				InitUnuse ( );
-				return;
+		//define how item will react when player hit use item button
+		else if (state == EItemState.USING) {
+			switch (props.itemType) {
+				//keep call using item until timer bigger then continuousTime
+				case EItemType.COUNTING:
+					timer += Time.deltaTime;
+					if (timer >= props.continuousTime) {
+						BeforeEndState ( );
+						InitUnuse ( );
+						return;
+					}
+					UsingItem ( );
+					break;
+					//call usingItem then call BeforeEndState and InitUnuse immediately
+				case EItemType.INSTANT:
+					UsingItem ( );
+					BeforeEndState ( );
+					InitUnuse ( );
+					break;
+					//just keep calling usingItem, the item Type which is Triggering need to call BeforeEndState and InitUnuse in child class
+				case EItemType.TRIGEER:
+					UsingItem ( );
+					break;
+
 			}
-			UsingItem ( );
-			if (props.bInstantItem)
-				InitUnuse ( );
 		}
 	}
 
@@ -67,7 +83,13 @@ public class IItem : MonoBehaviour {
 			if (owner.Item == null)
 				InitPickUp (owner);
 		}
+	}
 
+	//if item drop into deadzone reset its state to Unuse
+	protected virtual void OnTriggerEnter2D (Collider2D other) {
+		if (other.tag == "DeadZone") {
+			InitUnuse ( );
+		}
 	}
 
 	//MUST OVERRIDE
@@ -108,4 +130,8 @@ public class IItem : MonoBehaviour {
 		rend.enabled = true;
 		state = EItemState.PICKABLE;
 	}
+
+	//virtual method 
+	//define action before call InitUnuse
+	protected virtual void BeforeEndState ( ) { }
 }

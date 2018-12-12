@@ -53,13 +53,13 @@ public class Bomb : IItem {
 		base.OnCollisionEnter2D (other);
 		if (other.gameObject.tag == "Player" && state == EItemState.USING && other.gameObject != owner.gameObject) {
 			other.gameObject.GetComponent<IPlayer> ( ).UnderAttack (attackPoint);
-			InitUnuse ( );
+			BeforeEndState ( );
 		}
 	}
 
 	//reset	roatation and set bodyType to Kinematic also set collider to trigger
-	public override void InitUnuse ( ) {
-		base.InitUnuse ( );
+	protected override void BeforeEndState ( ) {
 		transform.rotation = Quaternion.Euler (0.0f, 0.0f, 0.0f);
+		InitUnuse ( );
 	}
 }

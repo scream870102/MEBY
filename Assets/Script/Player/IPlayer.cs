@@ -58,15 +58,15 @@ public class IPlayer : MonoBehaviour {
 	//ref for playerController
 	protected PlayerController playerController = null;
 	public PlayerController PlayerController { get { return playerController; } set { if (playerController == null) playerController = value; } }
+	//field for current player carry item
 	protected IItem item = null;
-	public IItem Item {
-		get { return item; }
-		set { item = value; }
-	}
+	public IItem Item { get { return item; } set { item = value; } }
+
 	[SerializeField]
 	protected EPlayerState playerState;
 	public EPlayerState PlayerState { get { return playerState; } set { playerState = value; } }
-	public bool IsPlayerFacingRight{get{return movement.IsPlayerFacingRight;}}
+	//property for other class get Player direction 
+	public bool IsPlayerFacingRight { get { return movement.IsPlayerFacingRight; } }
 	//to get player movement and set its parent
 	//call movement start method
 	//find foot object
@@ -77,7 +77,7 @@ public class IPlayer : MonoBehaviour {
 			health = GetComponent<PlayerHealth> ( );
 			paintball = GetComponent<PlayerPaintball> ( );
 			skill = GetComponent<ISkill> ( );
-			animator=GetComponent<PlayerAnimator>();
+			animator = GetComponent<PlayerAnimator> ( );
 			UI = GameObject.Find (numPlayer + "UI").GetComponent<PlayerUI> ( );
 			skill.Parent = this;
 			skill.SetActive (true);
@@ -86,8 +86,8 @@ public class IPlayer : MonoBehaviour {
 			attack.Parent = this;
 			movement.Parent = this;
 			paintball.Parent = this;
-			animator.Parent=this;
-			animator.Start();
+			animator.Parent = this;
+			animator.Start ( );
 			UI.Start ( );
 			attack.Start ( );
 			movement.Start ( );
@@ -97,7 +97,6 @@ public class IPlayer : MonoBehaviour {
 		}
 
 	}
-	protected virtual void Update ( ) { }
 
 	//public method to set player num string 
 	public void SetNumPlayer (int num) {
@@ -138,27 +137,31 @@ public class IPlayer : MonoBehaviour {
 	}
 
 	protected virtual void OnTriggerEnter2D (Collider2D other) {
-		if (other.name == "DeadZone") {
+		if (other.tag == "DeadZone") {
 			PlayerDead ( );
 		}
 	}
 
 	//if player Dead call this function
-	public virtual void PlayerDead ( ) {
+	public void PlayerDead ( ) {
 		playerController.PlayerDead (this);
 		gameObject.SetActive (false);
 		UI.gameObject.SetActive (false);
 	}
 
-	public virtual void SetMovement (bool value) {
+	//public method for other class to set player movement 
+	public void SetMovement (bool value) {
 		movement.enabled = value;
 	}
 
-	public virtual void SetMoveSpeed (float value, bool bLimitTime = false, float limitTime = 0.0f) {
+	//public method for other class to set player movespeed bonus
+	public void SetMoveSpeed (float value, bool bLimitTime = false, float limitTime = 0.0f) {
 		movement.SpeedBonus = value;
 		if (bLimitTime)
 			StartCoroutine (MoveSpeedCoroutine (limitTime));
 	}
+
+	//Coroutine for reset player move speed bonus
 	IEnumerator MoveSpeedCoroutine (float limitTime) {
 		yield return new WaitForSeconds (limitTime);
 		movement.SpeedBonus = 1.0f;

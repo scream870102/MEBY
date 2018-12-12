@@ -2,4 +2,6 @@
 public enum EItem {
     HEALTH_KIT = 0,
     BOMB = 1,
+    TIME_BOMB = 2,
+    FAST_FRUIT=3,
 }
