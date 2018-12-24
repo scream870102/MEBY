@@ -91,7 +91,7 @@ MonoBehaviour:
       basicAttackPoint: 21
       basicSpeed: 225
       airSpeed: 125
-      numMaxJump: 1
+      numMaxJump: 2
       jumpForce: 3500
       groundRadius: 0.5
       isAirControl: 1
@@ -136,6 +136,12 @@ MonoBehaviour:
       itemType: 1
       continuousTime: 10
     - itemName: 3
+      itemType: 0
+      continuousTime: 0
+    - itemName: 4
+      itemType: 2
+      continuousTime: 0
+    - itemName: 5
       itemType: 0
       continuousTime: 0
     allMapPrefab:

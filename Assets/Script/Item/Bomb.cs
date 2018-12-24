@@ -52,7 +52,8 @@ public class Bomb : IItem {
 	protected override void OnCollisionEnter2D (Collision2D other) {
 		base.OnCollisionEnter2D (other);
 		if (other.gameObject.tag == "Player" && state == EItemState.USING && other.gameObject != owner.gameObject) {
-			other.gameObject.GetComponent<IPlayer> ( ).UnderAttack (attackPoint);
+			IPlayer hitPlayer=other.gameObject.GetComponent<IPlayer>();
+			hitPlayer.UnderAttack (attackPoint);
 			BeforeEndState ( );
 		}
 	}

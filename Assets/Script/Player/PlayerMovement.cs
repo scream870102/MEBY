@@ -61,6 +61,10 @@ public class PlayerMovement : MonoBehaviour {
 	//field which is multiply to player horizontal move speed
 	protected float speedBonus = 1.0f;
 	public float SpeedBonus { set { speedBonus = value; } }
+	//field store if player stray
+	protected bool bStray;
+	//public property for otehr to set bStray
+	public bool Stray { set { bStray = value; } }
 	//set all info from props
 	//set detectGround
 	public void Start ( ) {
@@ -74,14 +78,17 @@ public class PlayerMovement : MonoBehaviour {
 			numNowJump = 0;
 			rb = GetComponent<Rigidbody2D> ( );
 			detectGround = transform.Find ("Foot");
+			bStray = false;
 		}
 	}
 
 	void Update ( ) {
 		IsGrounded ( );
 		//if player can controll get horizontal move
+		//if player on ground set speed to airspeed
+		//if player in stray statement multiply -1
 		if (isAirControl || bGround)
-			moveHorizontal = Input.GetAxisRaw (parent.NumPlayer + "Horizontal") * (bGround?basicSpeed : airSpeed);
+			moveHorizontal = Input.GetAxisRaw (parent.NumPlayer + "Horizontal") * (bGround?basicSpeed : airSpeed) * (bStray? - 1 : 1);
 		//if player hit jump button call jump method
 		if (Input.GetButtonDown (parent.NumPlayer + "Jump")) {
 			Jump ( );
@@ -130,7 +137,7 @@ public class PlayerMovement : MonoBehaviour {
 	protected void IsGrounded ( ) {
 		if (detectGround != null) {
 			foreach (LayerMask layer in groundLayer) {
-				Collider2D [ ] colliders = Physics2D.OverlapCircleAll (detectGround.position, groundRadius, layer);
+				Collider2D [ ] colliders = Physics2D.OverlapPointAll (detectGround.position, layer);
 				foreach (Collider2D collider in colliders) {
 					if (collider != gameObject) {
 						numNowJump = 0;

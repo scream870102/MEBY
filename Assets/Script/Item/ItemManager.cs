@@ -18,6 +18,10 @@ public class ItemManager : MonoBehaviour {
 	protected int maxItemNum = 6;
 	//const for spawn pos offset
 	protected float spawnPosOffset = 1.0f;
+	//
+	//for test
+	//
+	public IItem testItem;
 
 	//init itemList set manager
 	void Start ( ) {
@@ -44,6 +48,12 @@ public class ItemManager : MonoBehaviour {
 			currentItemNum++;
 			timer = 0.0f;
 		}
+		//-------------------
+		//--test
+		if(Input.GetKeyDown(KeyCode.F1)){
+			SpawnItem(testItem);
+		}
+		//-------------------
 	}
 	//spawn item which state is unuse and set its state to pickable
 	private void SpawnItem ( ) {
@@ -55,6 +65,15 @@ public class ItemManager : MonoBehaviour {
 		spawnPos.x += Random.Range (-spawnPosOffset, spawnPosOffset);
 		itemList [index].transform.position = spawnPos;
 	}
+	//----------------------------------
+	//test
+	private void SpawnItem (IItem testItem ) {
+		testItem.InitPickable ( );
+		Vector3 spawnPos = itemSpawnPos [Random.Range (0, itemSpawnPos.Count)].position;
+		spawnPos.x += Random.Range (-spawnPosOffset, spawnPosOffset);
+		testItem.transform.position = spawnPos;
+	}
+	//---------------------------------
 	//public method for item to notify which been use by player
 	public void ItemAlreadyUse ( ) {
 		currentItemNum--;

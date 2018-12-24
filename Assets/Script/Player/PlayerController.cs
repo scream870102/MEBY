@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	//store ref for hero gameobject after spawn
 	[SerializeField]
 	protected List<GameObject> heroes = new List<GameObject> ( );
+	protected List<IPlayer> players = new List<IPlayer> ( );
 	//define how many hero need to spawn
 	protected int numOfPlayers = 0;
 	protected int survivalPlayer = 0;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 		IPlayer temp = null;
 		temp = tempObject.GetComponent<IPlayer> ( );
 		if (temp != null) {
+			players.Add (temp);
 			temp.SetNumPlayer (numPlayer);
 			temp.Color = color;
 			temp.Init = true;
@@ -68,5 +70,10 @@ public class PlayerController : MonoBehaviour {
 		if (survivalPlayer == 1 && playScene != null) {
 			playScene.GameEnd (heroes [0].GetComponent<IPlayer> ( ));
 		}
+	}
+
+	//public method for other class to get all player in the playScene
+	public List<IPlayer> GetAllPlayers ( ) {
+		return players;
 	}
 }

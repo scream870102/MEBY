@@ -166,4 +166,19 @@ public class IPlayer : MonoBehaviour {
 		yield return new WaitForSeconds (limitTime);
 		movement.SpeedBonus = 1.0f;
 	}
+
+	//public method it is for set player movement invert in horizontal axis
+	public void SetStray (bool bLimitTime = false, float limitTime = 0.0f) {
+		movement.Stray = true;
+		//if this item has timeliness call coroutine
+		if (bLimitTime)
+			StartCoroutine (StrayCoroutine (limitTime));
+	}
+
+	//Coroutine for reset player move start in horizontal axis
+	IEnumerator StrayCoroutine (float limitTime) {
+		yield return new WaitForSeconds (limitTime);
+		movement.Stray = false;
+
+	}
 }

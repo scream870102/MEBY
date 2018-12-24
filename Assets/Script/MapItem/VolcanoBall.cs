@@ -7,6 +7,7 @@ public class VolcanoBall : MonoBehaviour {
 	[SerializeField]
 	protected SpriteRenderer sprite;
 	protected TilemapManager manager=null;
+	protected bool bPenetrate;
 	void Start () {
 		paintballColor = (EColor) Random.Range (0, System.Enum.GetValues (typeof (EColor)).Length - 1);
 		sprite.color=GameManager.instance.attribution.allColors[(int)paintballColor];
@@ -21,8 +22,9 @@ public class VolcanoBall : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D other) {
 		if(other.tag=="Ground"){
-			manager.SetTile (paintballColor, transform.position);
-			Destroy(this.gameObject);
+			bPenetrate=(Random.Range(0,2)%2==0)?true:false;
+			if(!bPenetrate)
+				manager.SetTile (paintballColor, transform.position);
 		}
 	}
 }

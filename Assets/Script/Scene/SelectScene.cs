@@ -53,6 +53,7 @@ public class SelectScene : IScene {
 		SelectHero ("Player4", 3);
 		MapSelected ( );
 		PressStart ( );
+
 	}
 
 	//get player enter due to its name
