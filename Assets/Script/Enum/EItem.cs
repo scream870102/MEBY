@@ -6,4 +6,5 @@ public enum EItem {
     FAST_FRUIT = 3,
     CONCH = 4,
     DEPON = 5,
+    ART_BOMB = 6,
 }

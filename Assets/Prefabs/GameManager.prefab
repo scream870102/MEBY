@@ -144,6 +144,9 @@ MonoBehaviour:
     - itemName: 5
       itemType: 0
       continuousTime: 0
+    - itemName: 6
+      itemType: 2
+      continuousTime: 0
     allMapPrefab:
     - {fileID: 1070305203052434, guid: 847374ef8dc72854c8365bcc4df8bbdf, type: 2}
 --- !u!114 &114942692933876758

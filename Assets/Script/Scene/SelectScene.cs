@@ -4,24 +4,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//heroInfo include texture and name
-[System.Serializable]
-public struct heroInfo {
-	public Texture texture;
-	public string name;
-}
 //select scene is scene for select hero and map
 public class SelectScene : IScene {
+	//heroInfo include texture and name
+	[System.Serializable]
+	struct HERO_INFO {
+		public Texture texture;
+		public string name;
+		public float attack;
+		public float attackSpeed;
+		public float speed;
+		public float healthPoint;
+	}
+
+	[System.Serializable]
+	struct SLIDER {
+		public Slider attack;
+		public Slider attackSpeed;
+		public Slider speed;
+		public Slider healthPoint;
+	}
 	//const hero info for all hero
-	public List<heroInfo> heroInfo;
+	[SerializeField]
+	private List<HERO_INFO> heroInfo;
 	//ref for heroAvatar
 	public List<RawImage> heroAvatar;
 	//ref for heroName
 	public List<Text> heroName;
+	[SerializeField]
+	private List<SLIDER> sliders;
 	//field to detect if player join the game
 	private bool [ ] bJoin = { false, false, false, false };
 	//field to detect if joined player already select hero and locked
 	private bool [ ] bLock = { false, false, false, false };
+	private float [ ] beforeSelectHero = { .0f, .0f, .0f, .0f };
 	//field to store palyer now select hero
 	private float [ ] nowSelectedHero = { .0f, .0f, .0f, .0f };
 	//field to store for now select map
@@ -67,18 +83,19 @@ public class SelectScene : IScene {
 		//if player already join enter hero select
 		else if (bJoin [playerNum] && !bLock [playerNum]) {
 			//choose hero by use horizontal key
-			if (Input.GetButtonDown (player + "Horizontal")) {
-				float selectedHero = Input.GetAxisRaw (player + "Horizontal");
+			float selectedHero = Input.GetAxisRaw (player + "Horizontal");
+			if (selectedHero != beforeSelectHero [playerNum]) {
 				nowSelectedHero [playerNum] += selectedHero;
+				ResetSlider (playerNum);
 			}
+			beforeSelectHero [playerNum] = selectedHero;
 			//check if player chosen is in the range
 			if ((int) nowSelectedHero [playerNum] >= (int) EHero.NONE)
 				nowSelectedHero [playerNum] = (float) EHero.MASANARI;
-			if (nowSelectedHero [playerNum] < 0.0f)
+			else if (nowSelectedHero [playerNum] < 0.0f)
 				nowSelectedHero [playerNum] = (float) (System.Enum.GetNames (typeof (EHero)).Length - 2);
 			//set avater and name UI component
-			heroAvatar [playerNum].texture = heroInfo [(int) nowSelectedHero [playerNum]].texture;
-			heroName [playerNum].text = heroInfo [(int) nowSelectedHero [playerNum]].name;
+			Render (playerNum);
 			//if player enter jump key again means lock 
 			if (Input.GetButtonUp (player + "Jump"))
 				bLock [playerNum] = true;
@@ -114,5 +131,30 @@ public class SelectScene : IScene {
 				GameManager.instance.SceneController.SetScene ("PlayScene");
 			}
 		}
+	}
+	//render avtar and set name
+	//keep all slider value until it reach the setting value
+	private void Render (int playerNum) {
+		heroAvatar [playerNum].texture = heroInfo [(int) nowSelectedHero [playerNum]].texture;
+		heroName [playerNum].text = heroInfo [(int) nowSelectedHero [playerNum]].name;
+		if (sliders [playerNum].attack.value <= heroInfo [(int) nowSelectedHero [playerNum]].attack) {
+			sliders [playerNum].attack.value += 1.0f;
+		}
+		if (sliders [playerNum].attackSpeed.value <= heroInfo [(int) nowSelectedHero [playerNum]].attackSpeed) {
+			sliders [playerNum].attackSpeed.value += 1.0f;
+		}
+		if (sliders [playerNum].speed.value <= heroInfo [(int) nowSelectedHero [playerNum]].speed) {
+			sliders [playerNum].speed.value += 1.0f;
+		}
+		if (sliders [playerNum].healthPoint.value <= heroInfo [(int) nowSelectedHero [playerNum]].healthPoint) {
+			sliders [playerNum].healthPoint.value += 1.0f;
+		}
+	}
+	//reset all slider value to zero call if player select another hero
+	private void ResetSlider (int playerNum) {
+		sliders [playerNum].attack.value = .0f;
+		sliders [playerNum].attackSpeed.value = .0f;
+		sliders [playerNum].speed.value = .0f;
+		sliders [playerNum].healthPoint.value = .0f;
 	}
 }

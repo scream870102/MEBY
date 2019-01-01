@@ -10,10 +10,10 @@ public class TitleScene : IScene {
 	}
 
 	protected override void Start ( ) { }
-	//if space key got down enter to select scene
+	//if space key got down enter to mode scene
 	protected override void Update ( ) {
 		if (Input.GetButtonDown ("Player1Jump")) {
-			GameManager.instance.SceneController.SetScene ("SelectScene");
+			GameManager.instance.SceneController.SetScene ("ModeScene");
 		}
 	}
 }
