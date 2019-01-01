@@ -3,13 +3,12 @@
 ---
 ### 未完成
 - 修正手把控制*無法使用*情形
-- 完成道具**藝術就是染色**
+- 手把讀取button Input Manager上 需補上是第幾個joystick 目前沒有可以確定joystick 是第幾個
 - 完成攝影機的跟隨
 - 完成moral devil動畫
 - 完成masanri動畫
 - 完成pirate bear動畫
 - 完成rebeeca動畫
-
 ---
 **181212**
 - 修改IITem架構 增加保留其他使用者觸發後才作用的道具類別`IItem.cs`
@@ -52,3 +51,15 @@
 - 完成道具**迷路depon**
 - 補上`Depon.cs` `PlayerMovemnt.cs` `IPlayer.cs`的註解
 - 新增`SetStray`方法在`IPlayer`裡面 讓外部可以讓角色在移動時達到左右相反的目的
+---
+**181230**
+- 完成道具**藝術就是染色**
+---
+**190101**
+- 新增**ModeScene** 模式選擇
+- 修改UI比例問題 *overlap by camera ui scale mode scale with screen size*
+- **mode scene** ui 動畫補上
+- **seleceted scene** ui 動畫 
+- 補上註解
+- 補上`ArtBomb.cs`comment
+- 手把讀取button Input Manager上 需補上是第幾個joystick 目前沒有可以確定joystick 是第幾個
