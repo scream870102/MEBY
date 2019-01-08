@@ -46,6 +46,9 @@ public class Bomb : IItem {
 			rend.enabled = true;
 			col.enabled = true;
 		}
+		if(rb.velocity.x==.0f||rb.velocity.y==.0f){
+			BeforeEndState();
+		}
 
 	}
 	//this function call when bomb being thrown and hit other palyer

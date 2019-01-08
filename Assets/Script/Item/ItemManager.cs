@@ -25,6 +25,8 @@ public class ItemManager : MonoBehaviour {
 
 	//init itemList set manager
 	void Start ( ) {
+		intervalTime = GameManager.instance.attribution.itemSpawnIntervalTime;
+		maxItemNum = GameManager.instance.attribution.maxItemNum;
 		foreach (IItem item in itemList) {
 			item.Manager = this;
 			item.InitUnuse ( );
@@ -50,8 +52,8 @@ public class ItemManager : MonoBehaviour {
 		}
 		//-------------------
 		//--test
-		if(Input.GetKeyDown(KeyCode.F1)){
-			SpawnItem(testItem);
+		if (Input.GetKeyDown (KeyCode.F1)) {
+			SpawnItem (testItem);
 		}
 		//-------------------
 	}
@@ -67,7 +69,7 @@ public class ItemManager : MonoBehaviour {
 	}
 	//----------------------------------
 	//test
-	private void SpawnItem (IItem testItem ) {
+	private void SpawnItem (IItem testItem) {
 		testItem.InitPickable ( );
 		Vector3 spawnPos = itemSpawnPos [Random.Range (0, itemSpawnPos.Count)].position;
 		spawnPos.x += Random.Range (-spawnPosOffset, spawnPosOffset);

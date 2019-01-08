@@ -35,7 +35,7 @@ public class IPlayer : MonoBehaviour {
 	//ref for player paintball
 	//define how paintball react
 	protected PlayerPaintball paintball = null;
-	protected PlayerAnimator animator = null;
+	protected Animator animator = null;
 	//ref for player Skill
 	[SerializeField]
 	protected ISkill skill = null;
@@ -62,11 +62,15 @@ public class IPlayer : MonoBehaviour {
 	protected IItem item = null;
 	public IItem Item { get { return item; } set { item = value; } }
 
-	[SerializeField]
-	protected EPlayerState playerState;
-	public EPlayerState PlayerState { get { return playerState; } set { playerState = value; } }
+	// [SerializeField]
+	// protected EPlayerState playerState;
+	// public EPlayerState PlayerState { get { return playerState; } set { playerState = value; } }
 	//property for other class get Player direction 
+	[SerializeField]
+	protected string state;
+	public string State { set { state = value; } get { return state; } }
 	public bool IsPlayerFacingRight { get { return movement.IsPlayerFacingRight; } }
+	public bool IsPlayerOnGround{get{return movement.IsGround;}}
 	//to get player movement and set its parent
 	//call movement start method
 	//find foot object
@@ -77,7 +81,7 @@ public class IPlayer : MonoBehaviour {
 			health = GetComponent<PlayerHealth> ( );
 			paintball = GetComponent<PlayerPaintball> ( );
 			skill = GetComponent<ISkill> ( );
-			animator = GetComponent<PlayerAnimator> ( );
+			animator = GetComponent<Animator> ( );
 			UI = GameObject.Find (numPlayer + "UI").GetComponent<PlayerUI> ( );
 			skill.Parent = this;
 			skill.SetActive (true);
@@ -86,8 +90,6 @@ public class IPlayer : MonoBehaviour {
 			attack.Parent = this;
 			movement.Parent = this;
 			paintball.Parent = this;
-			animator.Parent = this;
-			animator.Start ( );
 			UI.Start ( );
 			attack.Start ( );
 			movement.Start ( );
@@ -180,5 +182,19 @@ public class IPlayer : MonoBehaviour {
 		yield return new WaitForSeconds (limitTime);
 		movement.Stray = false;
 
+	}
+	protected void Render ( ) {
+		Vector3 temp = transform.localScale;
+		temp.x = IsPlayerFacingRight? - Mathf.Abs (temp.x) : Mathf.Abs (temp.x);
+		transform.localScale = temp;
+
+	}
+
+	protected virtual void Update() {
+		Render();
+	}
+
+	public void PaintballAnimEnd(){
+		State="PAINTBALL_FIN";
 	}
 }

@@ -76,4 +76,14 @@ public class PlayerController : MonoBehaviour {
 	public List<IPlayer> GetAllPlayers ( ) {
 		return players;
 	}
+	
+	//public method for other class to get all player transform in the playScene
+	public List<Transform> GetAllPlayersTransfrom ( ) {
+		List<Transform> transforms = new List<Transform> ( );
+		foreach (IPlayer player in players) {
+			transforms.Add (player.transform);
+		}
+		return transforms;
+	}
+
 }

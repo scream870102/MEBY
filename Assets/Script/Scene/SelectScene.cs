@@ -9,7 +9,7 @@ public class SelectScene : IScene {
 	//heroInfo include texture and name
 	[System.Serializable]
 	struct HERO_INFO {
-		public Texture texture;
+		public Sprite texture;
 		public string name;
 		public float attack;
 		public float attackSpeed;
@@ -28,7 +28,7 @@ public class SelectScene : IScene {
 	[SerializeField]
 	private List<HERO_INFO> heroInfo;
 	//ref for heroAvatar
-	public List<RawImage> heroAvatar;
+	public List<Image> heroAvatar;
 	//ref for heroName
 	public List<Text> heroName;
 	[SerializeField]
@@ -135,21 +135,22 @@ public class SelectScene : IScene {
 	//render avtar and set name
 	//keep all slider value until it reach the setting value
 	private void Render (int playerNum) {
-		heroAvatar [playerNum].texture = heroInfo [(int) nowSelectedHero [playerNum]].texture;
+		heroAvatar [playerNum].sprite = heroInfo [(int) nowSelectedHero [playerNum]].texture;
 		heroName [playerNum].text = heroInfo [(int) nowSelectedHero [playerNum]].name;
 		if (sliders [playerNum].attack.value <= heroInfo [(int) nowSelectedHero [playerNum]].attack) {
-			sliders [playerNum].attack.value += 1.0f;
+			sliders [playerNum].attack.value += heroInfo [(int) nowSelectedHero [playerNum]].attack*2.0f*Time.deltaTime;
 		}
 		if (sliders [playerNum].attackSpeed.value <= heroInfo [(int) nowSelectedHero [playerNum]].attackSpeed) {
-			sliders [playerNum].attackSpeed.value += 1.0f;
+			sliders [playerNum].attackSpeed.value += heroInfo [(int) nowSelectedHero [playerNum]].attackSpeed*2.0f*Time.deltaTime;
 		}
 		if (sliders [playerNum].speed.value <= heroInfo [(int) nowSelectedHero [playerNum]].speed) {
-			sliders [playerNum].speed.value += 1.0f;
+			sliders [playerNum].speed.value += heroInfo [(int) nowSelectedHero [playerNum]].speed*2.0f*Time.deltaTime;
 		}
 		if (sliders [playerNum].healthPoint.value <= heroInfo [(int) nowSelectedHero [playerNum]].healthPoint) {
-			sliders [playerNum].healthPoint.value += 1.0f;
+			sliders [playerNum].healthPoint.value += heroInfo [(int) nowSelectedHero [playerNum]].healthPoint*2.0f*Time.deltaTime;
 		}
 	}
+	
 	//reset all slider value to zero call if player select another hero
 	private void ResetSlider (int playerNum) {
 		sliders [playerNum].attack.value = .0f;

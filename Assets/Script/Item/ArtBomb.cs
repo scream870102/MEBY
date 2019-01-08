@@ -6,6 +6,7 @@ using UnityEngine;
 public class ArtBomb : IItem {
 	//enum define art bomb state
 	enum ART_BOMB_STATE {
+		BEFORE_SETTING,
 		//setting position and enable collider , renderer and trigger
 		SETTING,
 		//waiting for other player enter the trigger
@@ -26,26 +27,39 @@ public class ArtBomb : IItem {
 	//Get props from gameManager 
 	protected override void Start ( ) {
 		props = GameManager.instance.attribution.allItemProps [(int) EItem.ART_BOMB];
-		bombState = ART_BOMB_STATE.SETTING;
+		bombState = ART_BOMB_STATE.BEFORE_SETTING;
 		trigger.enabled = false;
 
 	}
 
 	//Add all players if players.count equals to zero then call setStray if player not equal to owner
 	public override void UsingItem ( ) {
+		Vector3 setPos=new Vector3();
 		switch (bombState) {
 			//get tilemapmanager and also set position and enable collider trigger and renderer then set state to WAITTING
+			case ART_BOMB_STATE.BEFORE_SETTING:
+				if(Owner.IsPlayerOnGround){
+					bombState=ART_BOMB_STATE.SETTING;
+				}
+					
+				else{
+					state = EItemState.PICK_UP;
+				}
+					
+				break;
 			case ART_BOMB_STATE.SETTING:
 				if (tilemapManager == null)
 					tilemapManager = GameObject.Find ("Map").GetComponent<TilemapManager> ( );
 				transform.position = Owner.transform.position;
-				col.enabled = true;
+				setPos=Owner.transform.position;
+				col.enabled = false;
 				trigger.enabled = true;
 				rend.enabled = true;
 				bombState = ART_BOMB_STATE.WAITING;
 				break;
 				//keep wait for other player to enter trigger area
 			case ART_BOMB_STATE.WAITING:
+				transform.position=setPos;
 				break;
 				//after bombing reset art bomb
 			case ART_BOMB_STATE.BOMBING:
@@ -59,7 +73,7 @@ public class ArtBomb : IItem {
 	//disable trigger and reset bombState to SETTING
 	protected override void BeforeEndState ( ) {
 		trigger.enabled = false;
-		bombState = ART_BOMB_STATE.SETTING;
+		bombState = ART_BOMB_STATE.BEFORE_SETTING;
 		InitUnuse ( );
 	}
 

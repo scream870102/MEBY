@@ -24,6 +24,7 @@ public class SkillDingShan : ISkill {
 	//override useSkill
 	protected override void UseSkill ( ) {
 		if (Input.GetButtonDown (Parent.NumPlayer + buttonString)) {
+			Parent.State="SKILL_START";
 			arrowObject.SetActive (true);
 			arrow.Use ( );
 			ResetCoolDown ( );

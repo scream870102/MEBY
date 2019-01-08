@@ -62,7 +62,7 @@ public class SkillGodHand : ISkill {
 		switch (state) {
 			case GOD_HAND_STATE.UNUSE:
 				//if player use skill enable hand object and reset timer and direction then set state to using
-				if (Input.GetButtonDown (Parent.NumPlayer + buttonString)) {
+				if (Input.GetButtonDown (Parent.NumPlayer + buttonString)&&Parent.IsPlayerOnGround) {
 					state = GOD_HAND_STATE.USING;
 					handObject.transform.position = transform.position;
 					handObject.transform.parent = null;
@@ -73,6 +73,7 @@ public class SkillGodHand : ISkill {
 				break;
 
 			case GOD_HAND_STATE.USING:
+				Parent.State = "SKILL_START";
 				//set direction first time
 				if (direction == DIRECTION.NONE)
 					direction = Parent.IsPlayerFacingRight ? DIRECTION.RIGHT : DIRECTION.LEFT;
@@ -90,6 +91,7 @@ public class SkillGodHand : ISkill {
 				break;
 				//this state will switch by hand object if it grab an player
 			case GOD_HAND_STATE.GRAB:
+				Parent.State = "SKILL_TOUCH";
 				if (target != null) {
 					//move hand object and target until it reach the position then set state to end
 					rb.MovePosition (rb.position + velocity * (int) direction * Time.deltaTime);
@@ -100,9 +102,11 @@ public class SkillGodHand : ISkill {
 				break;
 
 			case GOD_HAND_STATE.END:
+				Parent.State = "SKILL_TOUCH";
 				rb.MovePosition (rb.position + velocity * (int) direction * Time.deltaTime);
 				//if hand object back enter this if statement
 				if (Parent.Rigidbody2D.Distance (col).distance <= minmusDistance) {
+					Parent.State = "SKILL_END";
 					//make player move again
 					Parent.SetMovement (true);
 					//set state to unuse

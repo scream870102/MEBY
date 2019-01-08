@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour {
 	//bool for on ground
 	[SerializeField]
 	protected bool bGround;
+	public bool IsGround{get{return bGround;}}
 	//store current jump time
 	protected int numNowJump;
 	//store horizontal velocity
@@ -114,11 +115,14 @@ public class PlayerMovement : MonoBehaviour {
 	protected virtual void Move ( ) {
 		if (moveHorizontal > 0) {
 			bFacingRight = true;
-			parent.PlayerState = EPlayerState.WALK;
+			parent.State = "WALK";
 		}
 		else if (moveHorizontal < 0) {
 			bFacingRight = false;
-			parent.PlayerState = EPlayerState.WALK;
+			parent.State = "WALK";
+		}
+		else if (moveHorizontal == 0 && parent.State=="WALK") {
+			parent.State = "IDLE";
 		}
 		Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime * speedBonus, rb.velocity.y);
 		rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
@@ -127,8 +131,11 @@ public class PlayerMovement : MonoBehaviour {
 	//if can jump add force to rigidbody  call in fixed update
 	protected virtual void InJump ( ) {
 		if (bJump) {
-			parent.PlayerState = EPlayerState.JUMP;
-			rb.AddForce (new Vector2 (0f, jumpForce));
+			parent.State = "JUMP";
+			Vector2 temp=rb.velocity;
+			temp.y=0.0f;
+			rb.velocity=temp;
+			rb.AddForce (new Vector2 (0f, jumpForce),ForceMode2D.Impulse);
 			bJump = false;
 		}
 	}
@@ -142,7 +149,8 @@ public class PlayerMovement : MonoBehaviour {
 					if (collider != gameObject) {
 						numNowJump = 0;
 						bGround = true;
-						parent.PlayerState = EPlayerState.IDLE;
+						if (parent.State == "JUMP")
+							parent.State = "IDLE";
 					}
 					else
 						bGround = false;

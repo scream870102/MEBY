@@ -40,7 +40,7 @@ public class MermaidMan : MonoBehaviour {
 	}
 
 	//if state is flying keep move the mermaid man
-	void Update ( ) {
+	void FixedUpdate ( ) {
 		if (state == MERMAID_MAN_STATE.FLYING) {
 			Vector2 newPos = new Vector2 (rb.position.x - velocity * Time.fixedDeltaTime, rb.position.y);
 			rb.MovePosition (newPos);

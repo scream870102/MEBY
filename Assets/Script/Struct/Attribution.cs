@@ -16,4 +16,7 @@ public struct Attribution {
     public List<ItemProps> allItemProps;
     //ref for all map prefab
     public List<GameObject> allMapPrefab;
+
+    public float itemSpawnIntervalTime;
+    public int maxItemNum;
 }

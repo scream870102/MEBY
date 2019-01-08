@@ -45,10 +45,11 @@ public class PlayerAttack : MonoBehaviour {
 		if (Input.GetButtonDown (parent.NumPlayer + "Attack") && hitCollider != null && !bInCD) {
 			bAttacknig = true;
 			hitCollider.enabled = true;
+			parent.State = "ATTACK";
 		}
 
 		//if in attacking state accumulation timer and enter cd state when timer>=basicAttackSpeed
-		if (bAttacknig) {
+		else if (bAttacknig) {
 			timer += Time.deltaTime;
 			if (timer >= basicAttackSpeed) {
 				bAttacknig = false;
@@ -59,7 +60,8 @@ public class PlayerAttack : MonoBehaviour {
 		}
 
 		//if attack in CD accumulate timer and reset when timer>=basicAttackInterval
-		if (bInCD) {
+		else if (bInCD) {
+			parent.State="ATTACK_END";
 			timer += Time.deltaTime;
 			if (timer >= basicAttackInterval) {
 				bInCD = false;

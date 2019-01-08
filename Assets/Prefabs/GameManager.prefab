@@ -62,49 +62,49 @@ MonoBehaviour:
     - hero: 0
       mass: 5
       basicHealth: 100
-      basicAttackInterval: 0.5
-      basicAttackSpeed: 0.2
+      basicAttackInterval: 0.3
+      basicAttackSpeed: 0.3
       basicAttackPoint: 21
       basicSpeed: 350
       airSpeed: 150
       numMaxJump: 2
-      jumpForce: 2000
+      jumpForce: 75
       groundRadius: 0.03
       isAirControl: 1
     - hero: 1
-      mass: 6
+      mass: 5
       basicHealth: 100
-      basicAttackInterval: 0.5
-      basicAttackSpeed: 0.2
+      basicAttackInterval: 0.3
+      basicAttackSpeed: 0.3
       basicAttackPoint: 21
-      basicSpeed: 250
+      basicSpeed: 350
       airSpeed: 150
-      numMaxJump: 1
-      jumpForce: 1800
+      numMaxJump: 2
+      jumpForce: 75
       groundRadius: 0.03
       isAirControl: 1
     - hero: 2
-      mass: 10
+      mass: 5
       basicHealth: 100
-      basicAttackInterval: 0.5
-      basicAttackSpeed: 0.2
+      basicAttackInterval: 0.3
+      basicAttackSpeed: 0.3
       basicAttackPoint: 21
-      basicSpeed: 225
-      airSpeed: 125
+      basicSpeed: 350
+      airSpeed: 150
       numMaxJump: 2
-      jumpForce: 3500
-      groundRadius: 0.5
+      jumpForce: 75
+      groundRadius: 0.03
       isAirControl: 1
     - hero: 3
       mass: 5
       basicHealth: 100
-      basicAttackInterval: 0.5
-      basicAttackSpeed: 0.2
+      basicAttackInterval: 0.3
+      basicAttackSpeed: 0.3
       basicAttackPoint: 21
-      basicSpeed: 225
-      airSpeed: 125
-      numMaxJump: 1
-      jumpForce: 3500
+      basicSpeed: 350
+      airSpeed: 150
+      numMaxJump: 2
+      jumpForce: 75
       groundRadius: 0.03
       isAirControl: 1
     allSkillProps:
@@ -148,7 +148,9 @@ MonoBehaviour:
       itemType: 2
       continuousTime: 0
     allMapPrefab:
-    - {fileID: 1070305203052434, guid: 847374ef8dc72854c8365bcc4df8bbdf, type: 2}
+    - {fileID: 1070305203052434, guid: bfa4d441aac462e49abce302744da806, type: 2}
+    itemSpawnIntervalTime: 7
+    maxItemNum: 6
 --- !u!114 &114942692933876758
 MonoBehaviour:
   m_ObjectHideFlags: 1

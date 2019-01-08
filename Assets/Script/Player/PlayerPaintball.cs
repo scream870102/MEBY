@@ -14,6 +14,7 @@ public class PlayerPaintball : MonoBehaviour {
 	protected EColor playerColor;
 	//field for the current paintball color
 	protected EColor paintballColor;
+	protected float stopActionTime=0.5f;
 	public void Start ( ) {
 		if (parent != null) {
 			manager = GameObject.Find ("Map").GetComponent<TilemapManager> ( );
@@ -24,8 +25,10 @@ public class PlayerPaintball : MonoBehaviour {
 
 	void Update ( ) {
 		//if player hit use button set the tile behind it also reset paintball color
-		if (manager != null && Input.GetButtonDown (parent.NumPlayer + "Paintball")) {
+		if (manager != null && Input.GetButtonDown (parent.NumPlayer + "Paintball")&&Parent.IsPlayerOnGround) {
+			Parent.State = "PAINTBALL_USING";
 			manager.SetTile (paintballColor, transform.position);
+			Parent.StopAction(stopActionTime);
 			ResetPaintball ( );
 		}
 	}
