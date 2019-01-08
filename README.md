@@ -4,11 +4,14 @@
 ### 未完成
 - 修正手把控制*無法使用*情形
 - 手把讀取button Input Manager上 需補上是第幾個joystick 目前沒有可以確定joystick 是第幾個
-- 完成攝影機的跟隨
-- 完成moral devil動畫
-- 完成masanri動畫
-- 完成pirate bear動畫
+- 調整角色間的數值
+- 地圖的大小調整
+- 藝術就是染色bug待修復
+- Gotta gay gay設置位置bug
 - 完成rebeeca動畫
+- 所有角色染色動畫增加
+- 修改最後結算畫面
+- 調整camera跟角色大小
 ---
 **181212**
 - 修改IITem架構 增加保留其他使用者觸發後才作用的道具類別`IItem.cs`
@@ -63,3 +66,36 @@
 - 補上註解
 - 補上`ArtBomb.cs`comment
 - 手把讀取button Input Manager上 需補上是第幾個joystick 目前沒有可以確定joystick 是第幾個
+---
+**190102**
+- 完成攝影機的跟隨`MultipleTargetCamera.cs`[*Camera Code 參考資料 ](https://www.youtube.com/watch?v=aLpixrPvlB8)[*Bounds 類別 參考資料](https://docs.unity3d.com/ScriptReference/Bounds.html)
+- 補上註解
+---
+**190103**
+- 套上道具美術圖
+---
+**190106**
+- 完成moral devil動畫
+- 完成masanri動畫
+- 完成pirate bear動畫
+---
+**190107**
+- 修正moral devil 技能在空中施放的bug
+- 新增地圖Volcano
+- 調整道具大小
+- 調整角色Scale
+- Masanari Skill第一階段動畫調整
+- PirateBear 攻擊動畫時間調整 0.45sec
+- 調整跳躍物理運算 在每一次跳躍前將 velocity.y重製為0 再加上力
+- 跳躍的add force中的forceMode 修改成forceMode2d.Impulse
+- 藝術就是染色bug待修復
+- paintball動畫 masanari已設定 尚未更新sprite
+- 修改paintball使用規則 只可以在地上使用
+---
+**190108**
+- 新增Masanari **Paint動畫**
+- 新增PirateBear **Paint動畫**
+- 新增Moral_Devil **Paint動畫**
+- 更新UI設計
+- 神奇嗨螺 海超人動畫問題
+- 修正Pirate bear skill動畫問題
