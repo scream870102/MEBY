@@ -72,6 +72,9 @@ public class MultipleTargetCamera : MonoBehaviour {
 		for (int i = 0; i < targets.Count; i++) {
 			bound.Encapsulate (targets [i].position);
 		}
-		return bound.size.x;
+		if(bound.size.x>bound.size.y)
+			return bound.size.x;
+		else
+			return bound.size.y;
 	}
 }

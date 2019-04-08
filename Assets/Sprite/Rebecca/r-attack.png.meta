@@ -49,7 +49,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 450
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,8 +104,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 500
-        height: 500
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,7 +113,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15d9d70a637616641b2efcff3e53c704
+      spriteID: cbff6035954e7ef42ab78033f55db485
       vertices: []
       indices: 
       edges: []
@@ -122,10 +122,10 @@ TextureImporter:
       name: r-attack_1
       rect:
         serializedVersion: 2
-        x: 500
+        x: 800
         y: 0
-        width: 500
-        height: 500
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98a9a1d9358a0f04b8731652e390537f
+      spriteID: aa76f8a1273b64642b87e37950a10cc9
       vertices: []
       indices: 
       edges: []
@@ -142,10 +142,10 @@ TextureImporter:
       name: r-attack_2
       rect:
         serializedVersion: 2
-        x: 1000
+        x: 1600
         y: 0
-        width: 500
-        height: 500
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4cef1c9c3e0a454eb72834111ef2836
+      spriteID: cb10506da124d584c84f412abebf511d
       vertices: []
       indices: 
       edges: []
@@ -162,10 +162,10 @@ TextureImporter:
       name: r-attack_3
       rect:
         serializedVersion: 2
-        x: 1500
+        x: 2400
         y: 0
-        width: 500
-        height: 500
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,7 +173,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74a230220061f7040b2cc73d31af8bb1
+      spriteID: 4a8db143e2a391f46af49616d1841004
       vertices: []
       indices: 
       edges: []
@@ -181,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 75fafdc298f5b0149bd7212402a83402
+    spriteID: 15365e3a3b2bf3e468640797cfa8e30a
     vertices: []
     indices: 
     edges: []

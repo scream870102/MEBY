@@ -46,6 +46,7 @@ public class PlayScene : IScene {
 	public void GameEnd (IPlayer winner = null) {
 		if (winner != null) {
 			GameManager.instance.SceneController.winner = winner.name;
+			GameManager.instance.SceneController.winnerIPlayer = winner.Hero;
 		}
 		else {
 			GameManager.instance.SceneController.winner = "Game Developer";

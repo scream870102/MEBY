@@ -65,10 +65,10 @@ MonoBehaviour:
       basicAttackInterval: 0.3
       basicAttackSpeed: 0.3
       basicAttackPoint: 21
-      basicSpeed: 350
-      airSpeed: 150
+      basicSpeed: 1000
+      airSpeed: 700
       numMaxJump: 2
-      jumpForce: 75
+      jumpForce: 250
       groundRadius: 0.03
       isAirControl: 1
     - hero: 1
@@ -77,10 +77,10 @@ MonoBehaviour:
       basicAttackInterval: 0.3
       basicAttackSpeed: 0.3
       basicAttackPoint: 21
-      basicSpeed: 350
-      airSpeed: 150
+      basicSpeed: 800
+      airSpeed: 700
       numMaxJump: 2
-      jumpForce: 75
+      jumpForce: 250
       groundRadius: 0.03
       isAirControl: 1
     - hero: 2
@@ -89,10 +89,10 @@ MonoBehaviour:
       basicAttackInterval: 0.3
       basicAttackSpeed: 0.3
       basicAttackPoint: 21
-      basicSpeed: 350
-      airSpeed: 150
+      basicSpeed: 700
+      airSpeed: 700
       numMaxJump: 2
-      jumpForce: 75
+      jumpForce: 250
       groundRadius: 0.03
       isAirControl: 1
     - hero: 3
@@ -113,7 +113,7 @@ MonoBehaviour:
       skillActionTime: 0
     - skillName: 1
       skillCD: 7
-      skillActionTime: 5
+      skillActionTime: 2
     - skillName: 2
       skillCD: 5
       skillActionTime: 0.75
@@ -171,3 +171,4 @@ MonoBehaviour:
     heroesColor: 
     gameSetTime: 0
   winner: 
+  winnerIPlayer: 0

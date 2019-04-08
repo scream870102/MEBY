@@ -43,9 +43,13 @@ public class ModeScene : IScene {
 		GetInput ( );
 		//render all ui
 		Render ( );
-		if (Input.GetButtonDown ("Player1Jump")) {
+		if (Input.GetButtonDown ("Player1Jump")&&mode==MODE.EXIT) {
+			Application.Quit();
+		}
+		else if(Input.GetButtonDown("Player1Jump")){
 			GameManager.instance.SceneController.SetScene ("SelectScene");
 		}
+		
 	}
 
 	private void GetInput ( ) {

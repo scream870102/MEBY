@@ -159,4 +159,17 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
+	private void OnCollisionEnter2D(Collision2D other) {
+		if(!bGround && other.gameObject.tag=="Ground"){
+			Debug.Log("A");
+			rb.velocity=new Vector2(0.0f,rb.velocity.y);
+		}
+	}
+	private void OnCollisionStay2D(Collision2D other) {
+		if(!bGround && other.gameObject.tag=="Ground"){
+			Debug.Log("B");
+			rb.velocity=new Vector2(0.0f,rb.velocity.y);
+		}
+	}
+
 }

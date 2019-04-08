@@ -119,7 +119,7 @@ public class SelectScene : IScene {
 
 	//if every player already lock hero and player1 push start button go to playscene and set playstate to GameManager.instance.SceneController.playState
 	private void PressStart ( ) {
-		if (Input.GetButtonDown ("Player1Option")) {
+		if (Input.GetButtonDown ("Player1Jump")) {
 			bool allCheck = false;
 			for (int i = 0; i < playState.numOfPlayers; i++) {
 				allCheck = bLock [i] ? true : false;

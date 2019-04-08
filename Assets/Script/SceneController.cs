@@ -16,6 +16,7 @@ public class SceneController : MonoBehaviour {
 	//include essential info
 	public PlayState playState;
 	public string winner;
+	public EHero winnerIPlayer;
 	//Init first scene
 	void Start ( ) {
 		bGetScene = false;

@@ -14,7 +14,7 @@ public class IPlayer : MonoBehaviour {
 	//field to save which hero it is
 	private EHero hero = EHero.NONE;
 	//property for hero
-	protected EHero Hero {
+	public EHero Hero {
 		get { return hero; }
 		set { if (hero == EHero.NONE) hero = value; }
 	}
